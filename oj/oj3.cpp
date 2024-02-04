@@ -20,7 +20,8 @@ public:
         int leftDepth = depth(root->left); //  left depth
         int rightDepth = depth(root->right); //  right depth
 
-        return (leftDepth == rightDepth);
+        // check for the same depth
+        return isPerfect(root->left) && isPerfect(root->right) && (leftDepth == rightDepth);
     }
 
     static int depth(TreeNode *node) {
@@ -69,5 +70,4 @@ public:
     TreeNode *withLeaves() {
         return withChildren(leaf(), leaf());
     }
-
 };
