@@ -24,9 +24,9 @@ public:
         if (newRoot== nullptr)
             return;
 
-        func(newRoot->left,newNumbers);
-        newNumbers.push_back(newRoot->val);
-        func(newRoot->right,newNumbers);
+        func(newRoot->left,newNumbers);  // left node
+        newNumbers.push_back(newRoot->val);          // add number
+        func(newRoot->right,newNumbers); // right node
     }
 };
 
