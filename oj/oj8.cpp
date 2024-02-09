@@ -21,18 +21,14 @@ int main() {
         words.resize(n); // create sized vector for words
 
         for (auto &word: words) {
-            string currW;
-            cin >> currW;
-            word += currW;
+            cin >> word; // directly read into the word
         }
 
         cin >> m;
         vector<string> rules(m); // create sized vector for rules
 
         for (auto &rule: rules) {
-            string currR;
-            cin >> currR;
-            rule += currR;
+            cin >> rule; // directly read into the rule
         }
 
         cout << "--" << endl;
@@ -42,28 +38,28 @@ int main() {
             generatePasswords("", {rule, 0});
         }
 
-        // Print all passwords
-        cout << allPasswords;
-        allPasswords = ""; // Clear the passwords
+        cout << allPasswords;   // Print all passwords to only 1 rule
+        allPasswords = ""; // then clear for the next word
     }
 
     return 0;
 }
 
 void generatePasswords(string password, RuleIndex ruleIndex) {
-    if (ruleIndex.index == ruleIndex.rule.size()) {
+    if (ruleIndex.index == ruleIndex.rule.size()) { // go by index through all rules
         allPasswords += password + "\n"; // each line
-        return;
+        return; // base case
     }
 
     if (ruleIndex.rule[ruleIndex.index] == '0') {
         for (int i = 0; i < 10; i++) {
-            generatePasswords(password + to_string(i), {ruleIndex.rule, ruleIndex.index + 1});
+            int num = i;
+            string numS = to_string(num);
+            generatePasswords(password + numS, {ruleIndex.rule, ruleIndex.index + 1}); // add digits
         }
-    }
-    else if (ruleIndex.rule[ruleIndex.index] == '#') {
+    } else if (ruleIndex.rule[ruleIndex.index] == '#') {
         for (auto &word: words) {
-            generatePasswords(password + word, {ruleIndex.rule, ruleIndex.index + 1});
+            generatePasswords(password + word, {ruleIndex.rule, ruleIndex.index + 1}); // add word
         }
     }
 }
