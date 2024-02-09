@@ -1,61 +1,69 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include <stack>
 
 using namespace std;
 
 vector<string> words;
-vector<string> rules;
+string allPasswords;
 
-struct State {
-    string password;
-    int ruleIndex;
+struct RuleIndex {
+    string rule;
+    int index;
 };
 
-void generatePasswords(string rule) {
-    stack<State> states;
-    for (const string& word : words) {
-        states.push({word, 1});
-    }
-
-    while (!states.empty()) {
-        State current = states.top();
-        states.pop();
-
-        if (current.ruleIndex == rule.size()) {
-            cout << current.password << endl;
-        } else if (rule[current.ruleIndex] == '0') {
-            for (int i = 0; i < 10; i++) {
-                states.push({current.password + to_string(i), current.ruleIndex + 1});
-            }
-        } else if (rule[current.ruleIndex] == '#') {
-            for (const string& word : words) {
-                states.push({current.password + word, current.ruleIndex + 1});
-            }
-        }
-    }
-}
+void generatePasswords(string password, RuleIndex ruleIndex);
 
 int main() {
     int n, m;
+
     while (cin >> n) {
-        words.resize(n);
-        for (string& word : words) {
-            cin >> word;
+        words.resize(n); // create sized vector for words
+
+        for (auto &word: words) {
+            string currW;
+            cin >> currW;
+            word += currW;
         }
 
         cin >> m;
-        rules.resize(m);
-        for (string& rule : rules) {
-            cin >> rule;
+        vector<string> rules(m); // create sized vector for rules
+
+        for (auto &rule: rules) {
+            string currR;
+            cin >> currR;
+            rule += currR;
         }
 
         cout << "--" << endl;
-        for (const string& rule : rules) {
-            generatePasswords(rule);
+
+        // Generate passwords for each rule
+        for (auto &rule: rules) {
+            generatePasswords("", {rule, 0});
         }
+
+        // Print all passwords
+        cout << allPasswords;
+        allPasswords = ""; // Clear the passwords
     }
 
     return 0;
+}
+
+void generatePasswords(string password, RuleIndex ruleIndex) {
+    if (ruleIndex.index == ruleIndex.rule.size()) {
+        allPasswords += password + "\n"; // each line
+        return;
+    }
+
+    if (ruleIndex.rule[ruleIndex.index] == '0') {
+        for (int i = 0; i < 10; i++) {
+            generatePasswords(password + to_string(i), {ruleIndex.rule, ruleIndex.index + 1});
+        }
+    }
+    else if (ruleIndex.rule[ruleIndex.index] == '#') {
+        for (auto &word: words) {
+            generatePasswords(password + word, {ruleIndex.rule, ruleIndex.index + 1});
+        }
+    }
 }
