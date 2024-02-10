@@ -5,9 +5,13 @@
 using namespace std;
 
 char star = '*';
+
 bool hasQueenInRow(const vector<string> &board, int row, int col);
+
 bool hasQueenInColumn(const vector<string> &board, int row, int col);
+
 bool hasQueenInDiagonal(const vector<string> &board, int row, int col);
+
 bool isValidPosition(const vector<string> &board, int row, int col);
 
 bool isValid(const vector<string> &board) {
@@ -28,7 +32,8 @@ bool isValid(const vector<string> &board) {
 }
 
 bool isValidPosition(const vector<string> &board, int row, int col) {
-    return !hasQueenInRow(board, row, col) || !hasQueenInColumn(board, row, col) || !hasQueenInDiagonal(board, row, col);
+    return !(hasQueenInRow(board, row, col) || hasQueenInColumn(board, row, col) ||
+             hasQueenInDiagonal(board, row, col));
 }
 
 bool hasQueenInRow(const vector<string> &board, int row, int col) {
