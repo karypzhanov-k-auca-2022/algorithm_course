@@ -2,14 +2,16 @@
 
 using namespace std;
 
-int findDigit(string n) {
-    if (n.size() == 1)
-        return n[0] - '0';
-    int sum = 0;
-    for (char c : n) {
-        sum += c - '0';
+int findDigit(long n) {
+    while (n > 9) { // do until stays only 1 digit
+        long long sum = 0;
+        while (n > 0) {
+            sum += n % 10; // take last
+            n /= 10; // erase last
+        }
+        n = sum;  // update n
     }
-    return findDigit(to_string(sum));
+    return n;
 }
 
 int main() {
@@ -17,19 +19,13 @@ int main() {
     int k;
     cin >> n >> k;
 
-    string N;
-
-    for (int i = 0; i < k; ++i) {
-        N += n;
+    long sum = 0;
+    for (char c : n) {
+        sum += c - '0';
     }
+    sum *= k;
 
-    int res = 0;
-
-    for (char i: N) {
-        res += i - '0';
-    }
-
-    cout << findDigit(to_string(res)) << "\n";
+    cout << findDigit(sum) << "\n";
 
     return 0;
 }
