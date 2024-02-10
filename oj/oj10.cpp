@@ -2,6 +2,16 @@
 
 using namespace std;
 
+int findDigit(string n) {
+    if (n.size() == 1)
+        return n[0] - '0';
+    int sum = 0;
+    for (char c : n) {
+        sum += c - '0';
+    }
+    return findDigit(to_string(sum));
+}
+
 int main() {
     string n;
     int k;
@@ -14,19 +24,12 @@ int main() {
     }
 
     int res = 0;
-    int resF = 0;
 
     for (char i: N) {
         res += i - '0';
     }
 
-    N = to_string(res);
-
-    for (char c: N) {
-        resF += c - '0';
-    }
-
-    cout << resF << "\n";
+    cout << findDigit(to_string(res)) << "\n";
 
     return 0;
 }
