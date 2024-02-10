@@ -7,7 +7,7 @@ int main() {
     int k;
     cin >> n >> k;
 
-    string N = "";
+    string N;
 
     for (int i = 0; i < k; ++i) {
         N += n;
