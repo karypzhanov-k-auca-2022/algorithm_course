@@ -28,7 +28,7 @@ bool isValid(const vector<string> &board) {
 }
 
 bool isValidPosition(const vector<string> &board, int row, int col) {
-    return hasQueenInRow(board, row, col) && hasQueenInColumn(board, row, col) && hasQueenInDiagonal(board, row, col);
+    return hasQueenInRow(board, row, col) || hasQueenInColumn(board, row, col) || hasQueenInDiagonal(board, row, col);
 }
 
 bool hasQueenInRow(const vector<string> &board, int row, int col) {
