@@ -2,31 +2,31 @@
 
 using namespace std;
 
-void generateBits(int start, int finish, int size, string current) {
-    if (current.size() == size) {
-        if (start == finish) {
-            cout << current << endl; // base case
+void generateBits(int max, int times, string current, int ones) {
+    if (current.size() == max) {  // Base case
+        if (ones == times) {
+            cout << current << endl; // Print current string
         }
         return;
     }
 
-    // + 0
-    generateBits(start, finish, size, current + "0");
-    // + 1 and increment start
-    generateBits(start, finish, size, current + "1");
+    // + 0  and keep the count of ones unchanged
+    generateBits(max, times, current + "0", ones);
+    // + 1 and increment the count of ones
+    generateBits(max, times, current + "1", ones + 1);
 }
 
 int main() {
-    int cases;
-    cin >> cases;
-    while (cases--) {
-        int length, finish;
-        cin >> length >> finish;
+    int data;
+    cin >> data;
+    while (data--) {
+        int N, H;
+        cin >> N >> H;
 
-        generateBits(0, finish, length, "");
+        generateBits(N, H, "", 0);
 
-        if (cases > 0) {
-            cout << endl; // line between cases
+        if (data > 0) {
+            cout << endl; // line between datasets
         }
     }
     return 0;
