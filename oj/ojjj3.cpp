@@ -12,7 +12,7 @@ bool checkBST_helper(Node* root, int min, int max) {
     return checkBST_helper(root->left, min, root->data - 1) && checkBST_helper(root->right, root->data + 1, max);
 }
 
-bool checkBST(Node* root) {
-    return checkBST_helper(root, 0, 1000);
+bool BST(Node* root) {
+    return checkBST_helper(root, -1, 10001);
 }
 
