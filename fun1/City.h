@@ -9,6 +9,7 @@ class City{
 public:
     City();
     City(string name, string latitude, string longitude);
+    void printInfo();
 
 protected:
     string name;

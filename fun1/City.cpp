@@ -10,3 +10,9 @@ City::City(string name, string latitude, string longitude){
     this->latitude = latitude;
     this->longitude = longitude;
 }
+
+void City::printInfo(){
+    cout << "City:" << this->name << "\n";
+    cout << "Latitude:" << this->latitude << "\n";
+    cout << "Longitude:" << this->longitude << "\n";
+}
