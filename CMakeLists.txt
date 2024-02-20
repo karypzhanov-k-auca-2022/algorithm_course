@@ -22,7 +22,10 @@ add_executable(main fun1/main.cpp)
 add_executable(plane_routes_creator
         fun1/main.cpp
         fun1/City.cpp
-        fun1/City.h)
+        fun1/City.h
+        fun1/Graph.h
+        fun1/Graph.cpp
+)
 
 add_executable(GAME
         stuff/My_Game/main.cpp
