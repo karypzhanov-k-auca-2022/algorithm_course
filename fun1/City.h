@@ -8,13 +8,17 @@ using namespace std;
 class City{
 public:
     City();
-    City(string name, string latitude, string longitude);
-    void printInfo();
+    City(string name, double latitude, double longitude);
+    void printInfo(){
+        cout << "City: " << this->name << "\n";
+        cout << "latitude: " << this->latitude << "\n";
+        cout << "longitude: " << this->longitude << "\n";
+    };
 
 protected:
     string name;
-    string latitude;
-    string longitude;
+    double latitude;
+    double longitude;
 };
 
 

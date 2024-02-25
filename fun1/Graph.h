@@ -8,7 +8,7 @@ using namespace std;
 
 class Graph {
 protected:
-    vector<vector<int>> path;
+    vector<vector<bool>> adj_matrix;
 
 public:
     Graph();

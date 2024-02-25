@@ -21,10 +21,9 @@ add_executable(main fun1/main.cpp)
 
 add_executable(plane_routes_creator
         fun1/main.cpp
-        fun1/City.cpp
         fun1/City.h
         fun1/Graph.h
-        fun1/Graph.cpp
+        fun1/Flight.h
 )
 
 add_executable(GAME
