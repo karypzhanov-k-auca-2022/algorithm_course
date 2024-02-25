@@ -7,12 +7,9 @@
 using namespace std;
 
 class Graph {
-protected:
-    vector<vector<bool>> adj_matrix;
-
-public:
-    Graph();
-    void addPath(int x, int y);
+private:
+    int V;
+    vector<int> *adj;
 };
 
 
