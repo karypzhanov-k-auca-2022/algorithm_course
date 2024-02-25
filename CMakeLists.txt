@@ -24,6 +24,7 @@ add_executable(plane_routes_creator
         fun1/City.h
         fun1/Graph.h
         fun1/Flight.h
+        fun1/TUI.h
 )
 
 add_executable(GAME
