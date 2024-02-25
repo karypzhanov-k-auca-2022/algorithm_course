@@ -3,13 +3,16 @@
 
 #include "iostream"
 #include "vector"
+#include "map"
 
 using namespace std;
 
 class Graph {
 private:
-    int V;
-    vector<int> *adj;
+
+
+public:
+
 };
 
 
