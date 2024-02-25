@@ -4,6 +4,9 @@
 #include <string>
 #include <vector>
 #include "City.h"
+#include "Graph.h"
+#include "Flight.h"
+#include "TUI.h"
 
 using namespace std;
 
@@ -13,7 +16,6 @@ int main() {
     vector<City> cities;
 
     //  read the file and create City objects
-    int i = 0;
     while (getline(file1ToRead, line)) {
         stringstream eachLine(line);
         string name;
@@ -27,19 +29,12 @@ int main() {
         double latitude = stod(latitudeFake);
         double longitude = stod(longitudeFake);
 
-        cities.emplace_back(i, name, latitude, longitude);    //  create City objects and add cities vector
-        i++;
+        cities.emplace_back(name, latitude, longitude);    //  create City objects and add cities vector
     }
 
-    for (int j = 0; j < cities.size(); j++) {
-        cities[j].printInfo();
-        cout << endl;
-    }
+    TUI tui;
+    int choice = tui.displayMenu();
 
-//    TUI tui;
-//    int choice = tui.displayMenu();
-//    tui.executeChoice(choice);
-
-
+    tui.executeChoice(choice);
     return 0;
 }

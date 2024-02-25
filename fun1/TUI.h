@@ -16,7 +16,6 @@ public:
     TUI() {}
 
 
-
     int displayMenu() {
         int choice;
         std::cout << "Please, enter the maximum positive distance between a plane can fly (km): ";
@@ -65,8 +64,6 @@ public:
             case 6:
                 std::cout << "You chose option 6" << std::endl;
                 break;
-            default:
-                std::cout << "Invalid choice. Please enter a number between 1 and 6." << std::endl;
         }
     }
 
