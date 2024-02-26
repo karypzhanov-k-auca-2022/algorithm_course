@@ -7,8 +7,8 @@
 class Flight {
 
 private:
-    City origin;
-    City destination;
+    std::string origin;
+    std::string destination;
     double distance;
 
 public:
@@ -30,21 +30,27 @@ public:
         return R * c;
     }
 
-    Flight(const City& origin, const City& destination) {
-        this->origin = origin;
-        this->destination = destination;
-        this->distance = calculateDistance(origin, destination);
-    }
-
-    Flight(const City& origin, const City& destination, double distance) {
+    Flight(const std::string& origin, const std::string& destination, double distance) {
         this->origin = origin;
         this->destination = destination;
         this->distance = distance;
     }
 
-    void printInfo() const {
-        std::cout << "Origin: " << this->origin.getName() << "\n";
-        std::cout << "Destination: " << this->destination.getName() << "\n";
+    std::string getOrigin() const {
+        return origin;
+    }
+
+    std::string getDestination() const {
+        return destination;
+    }
+
+    double getDistance() const {
+        return distance;
+    }
+
+    void printInfo() {
+        std::cout << "Origin: " << this->origin << "\n";
+        std::cout << "Destination: " << this->destination << "\n";
         std::cout << "Distance: " << this->distance << " km\n";
     }
 
