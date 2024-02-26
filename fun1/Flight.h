@@ -13,7 +13,7 @@ private:
 
 public:
 
-   static double calculateDistance(const City& city1, const City& city2) {
+    static double calculateDistance(const City &city1, const City &city2) {
         const double R = 6371.0;  // Earth's radius in kilometers
         double lat1 = city1.getLatitude() * M_PI / 180.0;
         double lon1 = city1.getLongitude() * M_PI / 180.0;
@@ -30,10 +30,22 @@ public:
         return R * c;
     }
 
-    Flight(const std::string& origin, const std::string& destination, double distance) {
+    Flight() = default;
+
+    Flight(const std::string &origin, const std::string &destination, double distance) {
         this->origin = origin;
         this->destination = destination;
         this->distance = distance;
+    }
+
+    Flight(const std::string &origin, const std::string &destination) {
+        this->origin = origin;
+        this->destination = destination;
+    }
+
+    void printInfo() const {
+        std::cout << this->origin << " and " << this->destination << " is " << this->distance
+                  << " km\n";
     }
 
     std::string getOrigin() const {
@@ -47,13 +59,6 @@ public:
     double getDistance() const {
         return distance;
     }
-
-    void printInfo() {
-        std::cout << "Origin: " << this->origin << "\n";
-        std::cout << "Destination: " << this->destination << "\n";
-        std::cout << "Distance: " << this->distance << " km\n";
-    }
-
 
 };
 
