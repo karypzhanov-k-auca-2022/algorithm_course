@@ -57,43 +57,49 @@ int main() {
         }
     }
 
-    for (const auto &flight: flights) {
-        flight.printInfo();
-    }
+//    for (const auto &flight: flights) {
+//        flight.printInfo();
+//    }
 
-    displayMenu1();
-    double maxDistance;
-    std::cin >> maxDistance;
-    displayMenu2();
-
-    int choice;
-    std::cin >> choice;
-
-    while (choice < 1 || choice > 6) {
-        std::cout << "Invalid choice. Please enter a number between 1 and 6." << std::endl; // validate the choice
-        std::cin >> choice;
-    }
+//  create a graph
+    Graph graph(cities, 100);
+    graph.printGraph();
 
 
-    switch (choice) {
-        case 1:
-            std::cout << "You chose option 1" << std::endl;
-            break;
-        case 2:
-            std::cout << "You chose option 2" << std::endl;
-            break;
-        case 3:
-            std::cout << "You chose option 3" << std::endl;
-            break;
-        case 4:
-            std::cout << "You chose option 4" << std::endl;
-            break;
-        case 5:
-            std::cout << "You chose option 5" << std::endl;
-            break;
-        case 6:
-            exit(0);
-    }
+    // output code
+    /*  displayMenu1();
+      double maxDistance;
+      std::cin >> maxDistance;
+      displayMenu2();
+
+      int choice;
+      std::cin >> choice;
+
+      while (choice < 1 || choice > 6) {
+          std::cout << "Invalid choice. Please enter a number between 1 and 6." << std::endl; // validate the choice
+          std::cin >> choice;
+      }
+
+
+      switch (choice) {
+          case 1:
+              std::cout << "You chose option 1" << std::endl;
+              break;
+          case 2:
+              std::cout << "You chose option 2" << std::endl;
+              break;
+          case 3:
+              std::cout << "You chose option 3" << std::endl;
+              break;
+          case 4:
+              std::cout << "You chose option 4" << std::endl;
+              break;
+          case 5:
+              std::cout << "You chose option 5" << std::endl;
+              break;
+          case 6:
+              exit(0);
+      } */
 
     return 0;
 }

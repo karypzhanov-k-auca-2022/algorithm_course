@@ -11,25 +11,31 @@ private:
     double longitude;
 
 public:
-    City();
-    City(const std::string& name, double latitude, double longitude){
+    City() = default;
+
+    City(const std::string &name, double latitude, double longitude) {
         this->name = name;
         this->latitude = latitude;
         this->longitude = longitude;
     }
 
-    void printInfo(){
+    void printInfo() const {
         std::cout << "City: " << this->name << "\n";
         std::cout << "Latitude: " << this->latitude << "\n";
         std::cout << "Longitude: " << this->longitude << "\n";
     }
 
     std::string getName() const {
-        return name; }
+        return name;
+    }
+
     double getLatitude() const {
-        return latitude; }
+        return latitude;
+    }
+
     double getLongitude() const {
-        return longitude; }
+        return longitude;
+    }
 
 };
 
