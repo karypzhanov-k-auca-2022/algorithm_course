@@ -61,45 +61,57 @@ int main() {
 //        flight.printInfo();
 //    }
 
-//  create a graph
-    Graph graph(cities, 100);
-    graph.printGraph();
-
-
     // output code
-    /*  displayMenu1();
-      double maxDistance;
-      std::cin >> maxDistance;
-      displayMenu2();
+    displayMenu1();
+    double maxDistance;
+    std::cin >> maxDistance;
+    displayMenu2();
 
-      int choice;
-      std::cin >> choice;
+    int choice;
+    std::cin >> choice;
 
-      while (choice < 1 || choice > 6) {
-          std::cout << "Invalid choice. Please enter a number between 1 and 6." << std::endl; // validate the choice
-          std::cin >> choice;
-      }
+    while (choice < 1 || choice > 6) {
+        std::cout << "Invalid choice. Please enter a number between 1 and 6." << std::endl; // validate the choice
+        std::cin >> choice;
+    }
 
+    if (choice == 1) {
+        std::string origin;
+        std::string destination;
+        std::cout << "Enter the origin city: ";
+        std::cin >> origin;
+        std::cout << "Enter the destination city: ";
+        std::cin >> destination;
 
-      switch (choice) {
-          case 1:
-              std::cout << "You chose option 1" << std::endl;
-              break;
-          case 2:
-              std::cout << "You chose option 2" << std::endl;
-              break;
-          case 3:
-              std::cout << "You chose option 3" << std::endl;
-              break;
-          case 4:
-              std::cout << "You chose option 4" << std::endl;
-              break;
-          case 5:
-              std::cout << "You chose option 5" << std::endl;
-              break;
-          case 6:
-              exit(0);
-      } */
+        Graph graph(cities, flights, maxDistance);
+        if (graph.routeExists(origin, destination)) {
+            std::cout << "The route exists." << std::endl;
+        } else {
+            std::cout << "The route does not exist." << std::endl;
+        }
+    } else if (choice == 2) {
+        std::string origin;
+        std::string destination;
+        std::cout << "Enter the origin city: ";
+        std::cin >> origin;
+        std::cout << "Enter the destination city: ";
+        std::cin >> destination;
 
+        Graph graph(cities, flights, maxDistance);
+        if (graph.routeExists(origin, destination)) {
+            std::cout << "The route exists." << std::endl;
+        } else {
+            std::cout << "The route does not exist." << std::endl;
+        }
+    } else if (choice == 3) {
+        Graph graph(cities, maxDistance);
+        graph.printGraph();
+    } else if (choice == 4) {
+        std::cout << "You chose 4" << std::endl;
+    } else if (choice == 5) {
+        std::cout << "You chose 5" << std::endl;
+    } else if (choice == 6) {
+        std::cout << "bye!" << std::endl;
+    }
     return 0;
 }

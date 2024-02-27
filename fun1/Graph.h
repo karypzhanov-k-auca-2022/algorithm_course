@@ -29,15 +29,53 @@ public:
         }
     }
 
+    Graph(const std::vector<City> &cities, const std::vector<Flight> &flights, double maxDistance) {
+        for (const auto &city: cities) {
+            adjacencyList[city.getName()] = std::vector<Flight>();
+        }
+        for (const auto &flight: flights) {
+            if (flight.getDistance() <= maxDistance) {
+                adjacencyList[flight.getOrigin()].push_back(flight);
+            }
+        }
+    }
+
     void printGraph() {
         for (const auto &city: adjacencyList) {
             std::cout << "City: " << city.first << "-> " << "\n";
             for (const auto &flight: city.second) {
-                std::cout << "Destination: " << flight.getDestination() << " Distance: " << flight.getDistance()
+                std::cout << flight.getDestination()<< " " << flight.getDistance()
                           << "\n";
             }
+            std::cout << "\n";
         }
     };
+
+    void addEdge(const std::string &origin, const std::string &destination, double distance) {
+        Flight flight(origin, destination, distance);
+        adjacencyList[origin].push_back(flight);
+    }
+
+    bool routeExists(const std::string &origin, const std::string &destination) {
+        std::vector<std::string> visited;
+        return routeExists(origin, destination, visited);
+    }
+
+    bool routeExists(const std::string &origin, const std::string &destination, std::vector<std::string> &visited) {
+        if (origin == destination) {
+            return true;
+        }
+
+        visited.push_back(origin);
+        for (const auto &flight: adjacencyList[origin]) {
+            if (std::find(visited.begin(), visited.end(), flight.getDestination()) == visited.end()) {
+                if (routeExists(flight.getDestination(), destination, visited)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
 #endif //ALGORITHMS_PERSONAL_REPO_KARYPZHANOV_K_AUCA_2022_GRAPH_H
 };
