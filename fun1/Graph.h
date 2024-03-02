@@ -44,12 +44,35 @@ public:
         for (const auto &city: adjacencyList) {
             std::cout << "City: " << city.first << "-> " << "\n";
             for (const auto &flight: city.second) {
-                std::cout << flight.getDestination()<< " " << flight.getDistance()
+                std::cout << flight.getDestination() << " " << flight.getDistance()
                           << "\n";
             }
             std::cout << "\n";
         }
     };
+
+    std::vector<std::string> findRoute(const std::string &origin, const std::string &destination) {
+        std::vector<std::string> visited;
+        std::vector<std::string> route = dfs(origin, destination, visited);
+        return route;
+    }
+
+    std::vector<std::string>
+    dfs(const std::string &origin, const std::string &destination, std::vector<std::string> &visited) {
+        visited.push_back(origin);
+        if (origin == destination) {
+            return visited;
+        }
+        for (const auto &flight: adjacencyList[origin]) {
+            if (std::find(visited.begin(), visited.end(), flight.getDestination()) == visited.end()) {
+                std::vector<std::string> route = dfs(flight.getDestination(), destination, visited);
+                if (!route.empty()) {
+                    return route;
+                }
+            }
+        }
+        return std::vector<std::string>();
+    }
 
 #endif //ALGORITHMS_PERSONAL_REPO_KARYPZHANOV_K_AUCA_2022_GRAPH_H
 };

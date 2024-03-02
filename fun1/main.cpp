@@ -79,8 +79,10 @@ int main() {
         std::cout << "Enter the destination city: ";
         std::cin >> destination;
 
-        Graph graph(cities, flights, maxDistance);
-        if (graph.routeExists(origin, destination)) {
+        Graph graph(cities, maxDistance);
+        std::vector<std::string> route = graph.findRoute(origin, destination);
+
+        if (!route.empty()) {
             std::cout << "The route exists." << std::endl;
         } else {
             std::cout << "The route does not exist." << std::endl;

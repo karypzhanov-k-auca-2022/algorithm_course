@@ -43,11 +43,6 @@ public:
         this->destination = destination;
     }
 
-    void printInfo() const {
-        std::cout << this->origin << " and " << this->destination << " is " << this->distance
-                  << " km\n";
-    }
-
     std::string getOrigin() const {
         return origin;
     }
