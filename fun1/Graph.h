@@ -51,31 +51,5 @@ public:
         }
     };
 
-    void addEdge(const std::string &origin, const std::string &destination, double distance) {
-        Flight flight(origin, destination, distance);
-        adjacencyList[origin].push_back(flight);
-    }
-
-    bool routeExists(const std::string &origin, const std::string &destination) {
-        std::vector<std::string> visited;
-        return routeExists(origin, destination, visited);
-    }
-
-    bool routeExists(const std::string &origin, const std::string &destination, std::vector<std::string> &visited) {
-        if (origin == destination) {
-            return true;
-        }
-
-        visited.push_back(origin);
-        for (const auto &flight: adjacencyList[origin]) {
-            if (std::find(visited.begin(), visited.end(), flight.getDestination()) == visited.end()) {
-                if (routeExists(flight.getDestination(), destination, visited)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
 #endif //ALGORITHMS_PERSONAL_REPO_KARYPZHANOV_K_AUCA_2022_GRAPH_H
 };

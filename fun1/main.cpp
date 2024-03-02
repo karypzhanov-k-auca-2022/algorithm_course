@@ -57,10 +57,6 @@ int main() {
         }
     }
 
-//    for (const auto &flight: flights) {
-//        flight.printInfo();
-//    }
-
     // output code
     displayMenu1();
     double maxDistance;
@@ -92,17 +88,11 @@ int main() {
     } else if (choice == 2) {
         std::string origin;
         std::string destination;
-        std::cout << "Enter the origin city: ";
+        std::cout << "Enter the 1 city: ";
         std::cin >> origin;
-        std::cout << "Enter the destination city: ";
+        std::cout << "Enter the 2 city: ";
         std::cin >> destination;
 
-        Graph graph(cities, flights, maxDistance);
-        if (graph.routeExists(origin, destination)) {
-            std::cout << "The route exists." << std::endl;
-        } else {
-            std::cout << "The route does not exist." << std::endl;
-        }
     } else if (choice == 3) {
         Graph graph(cities, maxDistance);
         graph.printGraph();
@@ -111,7 +101,8 @@ int main() {
     } else if (choice == 5) {
         std::cout << "You chose 5" << std::endl;
     } else if (choice == 6) {
-        std::cout << "bye!" << std::endl;
+        std::cout << "bye bye!" << std::endl;
     }
+
     return 0;
 }
