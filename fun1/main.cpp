@@ -5,9 +5,20 @@
 #include <vector>
 #include "Graph.h"
 
-static void printLine() {
-    std::cout << "----------------------------------------" << std::endl;
+std::string normalizeCityName(std::string city) {
+    if (city.empty())
+        return city;
+    city[0] = std::toupper(city[0]);
+    for (size_t i = 1; i < city.size(); ++i) {
+        if (city[i - 1] == ' ') {
+            city[i] = std::toupper(city[i]);
+        } else {
+            city[i] = std::tolower(city[i]);
+        }
+    }
+    return city;
 }
+
 
 static void displayMenu1() {
     std::cout << "Please, enter the maximum positive distance between a plane can fly (km): ";
@@ -61,11 +72,13 @@ int main() {
         std::string destination;
         std::cout << "Enter the origin city: ";
         std::cin >> origin;
+        std::string originNormalized = normalizeCityName(origin);
         std::cout << "Enter the destination city: ";
         std::cin >> destination;
+        std::string destinationNormalized = normalizeCityName(destination);
 
         Graph graph(cities, maxDistance);
-        std::vector<std::string> route = graph.findRoute(origin, destination);
+        std::vector<std::string> route = graph.findRoute(originNormalized, destinationNormalized);
 
         if (!route.empty()) {
             std::cout << "The route exists." << std::endl;
