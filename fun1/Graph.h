@@ -4,9 +4,12 @@
 #include "iostream"
 #include "vector"
 #include "unordered_map"
+#include "unordered_set"
+#include "algorithm"
 #include "City.h"
 #include "Flight.h"
 
+const double MAX_DISTANCE = 100000;
 
 class Graph {
 private:
@@ -80,6 +83,56 @@ public:
         return {}; // if the route does not exist
     }
 
-};
+    std::vector<std::string> shortestPath(const std::string &origin, const std::string &destination) {
+        std::unordered_map<std::string, double> distance;
+        std::unordered_map<std::string, std::string> previous;
+        std::unordered_set<std::string> unvisited;
 
-#endif //ALGORITHMS_PERSONAL_REPO_KARYPZHANOV_K_AUCA_2022_GRAPH_H
+        for (const auto &city: adjacencyList) {  // initialize the distance and previous maps
+            distance[city.first] = MAX_DISTANCE;
+            previous[city.first] = "";
+            unvisited.insert(city.first); // add all cities to the unvisited set
+        }
+
+        distance[origin] = 0; // set the distance of the origin to 0
+
+        while (!unvisited.empty()) {
+            std::string current;
+            double minDistance = MAX_DISTANCE; // to start with the maximum distance
+            for (const auto &city: unvisited) {
+                if (distance[city] < minDistance) {
+                    minDistance = distance[city]; // update the minimum distance
+                    current = city; // update the current city
+                }
+            }
+
+            unvisited.erase(current); // remove from the unvisited set
+
+            for (const auto &flight: adjacencyList[current]) { // iterate through the flights of the current city
+                double newDist = distance[current] + flight.getDistance(); // calculate the new distance
+
+                if (newDist <
+                    distance[flight.getDestination()]) { // if the new distance is less than the current distance
+                    distance[flight.getDestination()] = newDist; // update the distance
+                    previous[flight.getDestination()] = current; // update the previous city
+                }
+            }
+        }
+
+        std::vector<std::string> path;
+        std::string current = destination; // start from the destination
+        while (current != origin) {
+            path.push_back(current); // add the current city to the path
+            current = previous[current]; // update the current city
+        }
+        path.push_back(origin);  // add the origin to the path
+
+        std::reverse(path.begin(), path.end());
+
+        return path;
+
+    }
+
+#endif // ALGORITHMS_PERSONAL_REPO_KARYPZHANOV_K_AUCA_2022_GRAPH_H
+
+};

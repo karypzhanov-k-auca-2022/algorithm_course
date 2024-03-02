@@ -5,6 +5,10 @@
 #include <vector>
 #include "Graph.h"
 
+static void processDisplay() {
+    std::cout << "Creating a route between two cities." << std::endl;
+}
+
 std::string normalizeCityName(std::string city) {
     if (city.empty())
         return city;
@@ -90,9 +94,22 @@ int main() {
         std::string destination;
         std::cout << "Enter the 1 city: ";
         std::cin >> origin;
+        std::string originNormalized = normalizeCityName(origin);
         std::cout << "Enter the 2 city: ";
         std::cin >> destination;
+        std::string destinationNormalized = normalizeCityName(destination);
 
+        Graph graph(cities, maxDistance);
+        std::vector<std::string> route = graph.shortestPath(originNormalized, destinationNormalized);
+        processDisplay();
+
+        for (auto i = route.begin(); i != route.end(); i++) {
+            if (i != route.end() - 1) {
+                std::cout << *i << " -> ";
+            } else {
+                std::cout << *i << std::endl;
+            }
+        }
     } else if (choice == 3) {
         Graph graph(cities, maxDistance);
         graph.printGraph();
