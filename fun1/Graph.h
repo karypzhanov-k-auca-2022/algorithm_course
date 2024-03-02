@@ -51,28 +51,35 @@ public:
         }
     };
 
+
     std::vector<std::string> findRoute(const std::string &origin, const std::string &destination) {
-        std::vector<std::string> visited;
-        std::vector<std::string> route = dfs(origin, destination, visited);
-        return route;
+        std::vector<std::string> visited; // create a vector to store visited cities
+        std::vector<std::string> path = dfs(origin, destination, visited); // call the dfs function
+        return path;
     }
 
     std::vector<std::string>
     dfs(const std::string &origin, const std::string &destination, std::vector<std::string> &visited) {
-        visited.push_back(origin);
         if (origin == destination) {
-            return visited;
+            std::vector<std::string> route;
+            route.push_back(origin); // add the destination to the route
+            return route;
         }
+
+        visited.push_back(origin);
         for (const auto &flight: adjacencyList[origin]) {
-            if (std::find(visited.begin(), visited.end(), flight.getDestination()) == visited.end()) {
-                std::vector<std::string> route = dfs(flight.getDestination(), destination, visited);
-                if (!route.empty()) {
-                    return route;
+            if (std::find(visited.begin(), visited.end(), flight.getDestination()) ==
+                visited.end()) { // if the 2nd city has not been visited yet then continue
+                std::vector<std::string> path = dfs(flight.getDestination(), destination, visited); // recursive call
+                if (!path.empty()) {
+                    path.insert(path.begin(), origin); // insert origin to the beginning of the path
+                    return path;
                 }
             }
         }
-        return std::vector<std::string>();
+        return {}; // if the route does not exist
     }
 
-#endif //ALGORITHMS_PERSONAL_REPO_KARYPZHANOV_K_AUCA_2022_GRAPH_H
 };
+
+#endif //ALGORITHMS_PERSONAL_REPO_KARYPZHANOV_K_AUCA_2022_GRAPH_H

@@ -46,17 +46,6 @@ int main() {
         cities.emplace_back(name, latitude, longitude);    //  create City objects and add cities vector
     }
 
-    //  create Flight objects
-    for (int i = 0; i < cities.size(); i++) {
-        for (int j = 0; j < cities.size(); j++) {
-            if (i != j) {
-                double distance = Flight::calculateDistance(cities[i], cities[j]);
-                Flight flight(cities[i].getName(), cities[j].getName(), distance);
-                flights.push_back(flight);
-            }
-        }
-    }
-
     // output code
     displayMenu1();
     double maxDistance;
@@ -66,10 +55,6 @@ int main() {
     int choice;
     std::cin >> choice;
 
-    while (choice < 1 || choice > 6) {
-        std::cout << "Invalid choice. Please enter a number between 1 and 6." << std::endl; // validate the choice
-        std::cin >> choice;
-    }
 
     if (choice == 1) {
         std::string origin;
