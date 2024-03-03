@@ -19,12 +19,6 @@ public:
         this->longitude = longitude;
     }
 
-    void printInfo() const {
-        std::cout << "City: " << this->name << "\n";
-        std::cout << "Latitude: " << this->latitude << "\n";
-        std::cout << "Longitude: " << this->longitude << "\n";
-    }
-
     std::string getName() const {
         return name;
     }

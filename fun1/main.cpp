@@ -92,10 +92,10 @@ int main() {
     } else if (choice == 2) {
         std::string origin;
         std::string destination;
-        std::cout << "Enter the 1 city: ";
+        std::cout << "Enter the origin city: ";
         std::cin >> origin;
         std::string originNormalized = normalizeCityName(origin);
-        std::cout << "Enter the 2 city: ";
+        std::cout << "Enter the destination city: ";
         std::cin >> destination;
         std::string destinationNormalized = normalizeCityName(destination);
 
@@ -111,8 +111,7 @@ int main() {
             }
         }
     } else if (choice == 3) {
-        Graph graph(cities, maxDistance);
-        graph.printGraph();
+        std::cout << "You chose 3" << std::endl;
     } else if (choice == 4) {
         std::cout << "You chose 4" << std::endl;
     } else if (choice == 5) {

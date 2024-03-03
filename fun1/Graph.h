@@ -9,7 +9,7 @@
 #include "City.h"
 #include "Flight.h"
 
-const double MAX_DISTANCE = 100000;
+const double MAX_DISTANCE = 1e9;
 
 class Graph {
 private:
@@ -31,29 +31,6 @@ public:
             }
         }
     }
-
-    Graph(const std::vector<City> &cities, const std::vector<Flight> &flights, double maxDistance) {
-        for (const auto &city: cities) {
-            adjacencyList[city.getName()] = std::vector<Flight>();
-        }
-        for (const auto &flight: flights) {
-            if (flight.getDistance() <= maxDistance) {
-                adjacencyList[flight.getOrigin()].push_back(flight);
-            }
-        }
-    }
-
-    void printGraph() {
-        for (const auto &city: adjacencyList) {
-            std::cout << "City: " << city.first << "-> " << "\n";
-            for (const auto &flight: city.second) {
-                std::cout << flight.getDestination() << " " << flight.getDistance()
-                          << "\n";
-            }
-            std::cout << "\n";
-        }
-    };
-
 
     std::vector<std::string> findRoute(const std::string &origin, const std::string &destination) {
         std::vector<std::string> visited; // create a vector to store visited cities
