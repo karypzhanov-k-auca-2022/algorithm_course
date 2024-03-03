@@ -1,23 +1,18 @@
 #include "iostream"
-#include "queue"
+#include "unordered_set"
 
 using namespace std;
 
 int main() {
-    queue<int> q;
-    q.push(1);
-    q.push(2);
-    q.push(3829129);
-    q.push(4);
+    unordered_set<int> set;
+    set.insert(1);
+    set.insert(2);
+    set.insert(3);
 
 
-    cout << q.front() << endl;
-    q.pop();
-    cout << q.front() << endl;
-    q.pop();
-    cout << q.front() << endl;
-    q.pop();
-    cout << q.front() << endl;
-    q.pop();
-    return 0;
+
+    for (int i : set) {
+        cout << i << endl;
+    }
+
 }

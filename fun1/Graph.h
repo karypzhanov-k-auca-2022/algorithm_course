@@ -6,6 +6,7 @@
 #include "unordered_map"
 #include "unordered_set"
 #include "algorithm"
+#include "queue"
 #include "City.h"
 #include "Flight.h"
 
@@ -33,32 +34,62 @@ public:
     }
 
     std::vector<std::string> findRoute(const std::string &origin, const std::string &destination) {
-        std::vector<std::string> visited; // create a vector to store visited cities
-        std::vector<std::string> path = dfs(origin, destination, visited); // call the dfs function
+        std::unordered_set<std::string> visited; // create a vector to store visited cities
+        std::vector<std::string> path = bfs(origin, destination); // call the dfs function
         return path;
     }
 
-    std::vector<std::string>
-    dfs(const std::string &origin, const std::string &destination, std::vector<std::string> &visited) {
-        if (origin == destination) {
-            std::vector<std::string> route;
-            route.push_back(origin); // add the destination to the route
-            return route;
-        }
+    std::vector<std::string> bfs(const std::string &origin, const std::string &destination) {
+        std::queue<std::vector<std::string>> queue; //   to store the paths
+        std::unordered_set<std::string> visited;  //  visited cities
 
-        visited.push_back(origin);
-        for (const auto &flight: adjacencyList[origin]) {
-            if (std::find(visited.begin(), visited.end(), flight.getDestination()) ==
-                visited.end()) { // if the 2nd city has not been visited yet then continue
-                std::vector<std::string> path = dfs(flight.getDestination(), destination, visited); // recursive call
-                if (!path.empty()) {
-                    path.insert(path.begin(), origin); // insert origin to the beginning of the path
-                    return path;
+        queue.push({origin});
+
+        while (!queue.empty()) {
+            std::vector<std::string> path = queue.front(); //   first path from the queue
+            queue.pop(); // remove the path from the queue
+
+            std::string last = path.back(); // get the last city from the path
+
+            if (last == destination) {
+                return path;
+            }
+
+            if (visited.find(last) == visited.end()) { //  last city has not visited yet
+                visited.insert(last);  // set like visited
+
+                for (const auto &flight: adjacencyList[last]) {
+                    std::vector<std::string> new_path = path;
+                    new_path.push_back(flight.getDestination());
+                    queue.push(new_path);
                 }
             }
         }
-        return {}; // if the route does not exist
+        return {};
     }
+
+    //    std::vector<std::string>
+//    dfs(const std::string &origin, const std::string &destination, std::unordered_set<std::string> &visited) {
+//        if (origin == destination) {
+//            std::vector<std::string> route;
+//            route.push_back(origin); // add the destination to the route
+//            return route;
+//        }
+//
+//        visited.insert(origin); // add the origin to the visited set
+//        for (const auto &flight: adjacencyList[origin]) {
+//            if (visited.find(flight.getDestination()) ==
+//                visited.end()) {  //  if the destination city has not visited yet
+//                std::vector<std::string> path = dfs(flight.getDestination(), destination, visited); // recursive call
+//
+//                if (!path.empty()) {
+//                    path.insert(path.begin(), origin); // insert origin to the beginning of the path
+//                    return path;
+//                }
+//            }
+//        }
+//        return {}; // if the route does not exist
+//    }
 
     std::vector<std::string> shortestPath(const std::string &origin, const std::string &destination) {
         std::unordered_map<std::string, double> distance;
