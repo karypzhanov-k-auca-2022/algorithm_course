@@ -85,9 +85,11 @@ int main() {
         std::vector<std::string> route = graph.findRoute(originNormalized, destinationNormalized);
 
         if (!route.empty()) {
-            std::cout << "The route exists." << std::endl;
+            std::cout << "There is a route between " << originNormalized << " and " << destinationNormalized << "."
+                      << std::endl;
         } else {
-            std::cout << "The route does not exist." << std::endl;
+            std::cout << "There is no route between " << originNormalized << " and " << destinationNormalized << "."
+                      << std::endl;
         }
     } else if (choice == 2) {
         std::string origin;
