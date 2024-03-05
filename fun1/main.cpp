@@ -23,7 +23,6 @@ std::string normalizeCityName(std::string city) {
     return city;
 }
 
-
 static void displayMenu1() {
     std::cout << "Please, enter the maximum positive distance between a plane can fly (km): ";
 }
@@ -65,20 +64,22 @@ int main() {
     displayMenu1();
     double maxDistance;
     std::cin >> maxDistance;
+    std::string dummy;
+    std::getline(std::cin, dummy);
+
     displayMenu2();
 
     int choice;
     std::cin >> choice;
 
-
     if (choice == 1) {
         std::string origin;
         std::string destination;
         std::cout << "Enter the origin city: ";
-        std::cin >> origin;
+        std::getline(std::cin, origin);
         std::string originNormalized = normalizeCityName(origin);
         std::cout << "Enter the destination city: ";
-        std::cin >> destination;
+        std::getline(std::cin, destination);
         std::string destinationNormalized = normalizeCityName(destination);
 
         Graph graph(cities, maxDistance);
@@ -95,10 +96,10 @@ int main() {
         std::string origin;
         std::string destination;
         std::cout << "Enter the origin city: ";
-        std::cin >> origin;
+        std::getline(std::cin, origin);
         std::string originNormalized = normalizeCityName(origin);
         std::cout << "Enter the destination city: ";
-        std::cin >> destination;
+        std::getline(std::cin, destination);
         std::string destinationNormalized = normalizeCityName(destination);
 
         Graph graph(cities, maxDistance);
@@ -115,7 +116,6 @@ int main() {
     } else if (choice == 3) {
         std::cout << "The route between cities: " << std::endl;
         Graph graph(cities, maxDistance);
-
 
     } else if (choice == 4) {
         std::cout << "You chose 4" << std::endl;
