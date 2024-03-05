@@ -72,6 +72,9 @@ int main() {
     int choice;
     std::cin >> choice;
 
+    // Clear input buffer
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
     if (choice == 1) {
         std::string origin;
         std::string destination;
