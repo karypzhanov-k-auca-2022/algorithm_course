@@ -113,7 +113,10 @@ int main() {
             }
         }
     } else if (choice == 3) {
-        std::cout << "You chose 3" << std::endl;
+        std::cout << "The route between cities: " << std::endl;
+        Graph graph(cities, maxDistance);
+
+
     } else if (choice == 4) {
         std::cout << "You chose 4" << std::endl;
     } else if (choice == 5) {

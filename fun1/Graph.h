@@ -60,6 +60,7 @@ public:
                 }
             }
         }
+
         return {}; // if the route does not exist
     }
 
@@ -95,34 +96,37 @@ public:
   */
 
     std::vector<std::string> shortestPath(const std::string &origin, const std::string &destination) {
-        std::unordered_map<std::string, double> distance;
-        std::unordered_map<std::string, std::string> previous;
-        std::unordered_set<std::string> unvisited;
+        std::unordered_map<std::string, double> distance; // store distances from the start city to all others
+        std::unordered_map<std::string, std::string> previous; // store the previous city on the shortest path to each city
+        std::unordered_set<std::string> unvisited; // set all cities as unvisited
 
-        for (const auto &city: adjacencyList) {  // initialize the distance and previous maps
-            distance[city.first] = MAX_DISTANCE;
-            unvisited.insert(city.first); // add all cities to the unvisited set
+        // distances to all cities except start as infinity
+        for (const auto &cityPair: adjacencyList) {
+
+            if (cityPair.first == origin)
+                distance[cityPair.first] = 0; // origin
+            else
+                distance[cityPair.first] = MAX_DISTANCE; // other cities as infinity
+
+            unvisited.insert(cityPair.first);        // unvisited
         }
-
-        distance[origin] = 0; // set the distance of the origin to 0
 
         while (!unvisited.empty()) {
             std::string current;
-            double minDistance = MAX_DISTANCE; // to start with the maximum distance
+            double minDistance = MAX_DISTANCE;      // minimum distance to infinity
             for (const auto &city: unvisited) {
+                // 1 find the city with the minimum distance
                 if (distance[city] < minDistance) {
                     minDistance = distance[city]; // update the minimum distance
-                    current = city; // update the current city
+                    current = city;                // update the current city
                 }
             }
 
-            unvisited.erase(current); // remove from the unvisited set
-
-            for (const auto &flight: adjacencyList[current]) { // iterate through the flights of the current city
+            unvisited.erase(current);              // remove from the unvisited set
+            for (const auto &flight: adjacencyList[current]) { //  check through all flights of the current
                 double newDist = distance[current] + flight.getDistance(); // calculate the new distance
-
-                if (newDist <
-                    distance[flight.getDestination()]) { // if the new distance is less than the current distance
+                // 2
+                if (newDist < distance[flight.getDestination()]) { // if the new distance is less than the current distance
                     distance[flight.getDestination()] = newDist; // update the distance
                     previous[flight.getDestination()] = current; // update the previous city
                 }
@@ -135,13 +139,25 @@ public:
             path.push_back(current); // add the current city to the path
             current = previous[current]; // update the current city
         }
-        path.push_back(origin);  // add the origin to the path
+        path.push_back(origin); // add the origin
 
-        std::reverse(path.begin(), path.end());
+        std::reverse(path.begin(), path.end()); // reverse because we started from the destination
 
         return path;
-
     }
+
+    // todo kruskalMST crete a new graph with the minimum distance
+//    std::vector<Flight> kruskalMST() {
+//        std::vector<Flight> mst;
+//
+//        std::unordered_map<std::string, std::string> parent;
+//        for (const auto &cityPair: adjacencyList) {
+//            parent[cityPair.first] = cityPair.first;
+//        }
+//
+//
+//        return mst;
+//    }
 
 #endif // ALGORITHMS_PERSONAL_REPO_KARYPZHANOV_K_AUCA_2022_GRAPH_H
 

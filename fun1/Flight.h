@@ -38,6 +38,12 @@ public:
         this->distance = distance;
     }
 
+    Flight(const std::string &origin, const std::string &destination) {
+        this->origin = origin;
+        this->destination = destination;
+        this->distance = 0;
+    }
+
     std::string getOrigin() const {
         return origin;
     }
