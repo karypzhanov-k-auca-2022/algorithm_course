@@ -3,11 +3,10 @@
 using namespace std;
 
 int main() {
-    cout << "What is your name?:     ";
+    cout << "What is your name?:         ";
     string name;
     cin >> name;
-
-    cout << "Hello, " << name << "!" << endl;
+    cout << "Hello, " << name << "!\n";
 
     return 0;
 }
