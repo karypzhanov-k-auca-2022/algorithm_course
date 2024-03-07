@@ -38,7 +38,7 @@ static void displayMenu2() {
 }
 
 int main() {
-    std::ifstream file1ToRead("/Users/kai/CLionProjects/algorithms-personal-repo-karypzhanov-k-auca-2022/fun1/kg.csv");
+    std::ifstream file1ToRead("../fun1/kg.csv");
     std::string line;
     std::vector<City> cities;
     std::vector<Flight> flights;
@@ -73,7 +73,7 @@ int main() {
     std::cin >> choice;
 
     // Clear input buffer
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::cin.ignore();
 
     if (choice == 1) {
         std::string origin;
@@ -116,10 +116,29 @@ int main() {
                 std::cout << *i << std::endl;
             }
         }
+        std::string fileName = "../fun1/shortest_path.csv";
+
+        std::cout << "The shortest path between " << originNormalized << " and " << destinationNormalized
+                  << " has been created in a file: " << fileName << "."
+                  << std::endl;
+        graph.shortestPathToMyMaps(route, fileName);
+
     } else if (choice == 3) {
-        std::cout << "The route between cities: " << std::endl;
         Graph graph(cities, maxDistance);
 
+        auto mst = graph.kruskalMST();
+
+        std::string fileName = "../fun1/mst.txt";
+        graph.printMST(mst, fileName);
+
+        std::cout << "The route map between all the cities has been created in a file: " << fileName << "."
+                  << std::endl;
+
+        fileName = "../fun1/MST_for_google_maps.csv";
+        graph.MSTToMyMaps(mst, fileName);
+        std::cout << "The MST map for google maps between all the cities has been created in a file: " << fileName
+                  << "."
+                  << std::endl;
     } else if (choice == 4) {
         std::cout << "You chose 4" << std::endl;
     } else if (choice == 5) {

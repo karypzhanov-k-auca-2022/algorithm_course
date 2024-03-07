@@ -1,0 +1,27 @@
+Name
+Kemin -> Orlovka
+Раззаков -> Sülüktü
+Kara-Balta -> Kayyngdy
+Kant -> Bishkek
+Kök-Janggak -> Jalal-Abad
+Osh -> Kara-Suu
+Bazar-Korgon -> Kochkor-Ata
+Mayluu-Suu -> Tash-Kömür
+Kochkor-Ata -> Mayluu-Suu
+Bazar-Korgon -> Jalal-Abad
+Orlovka -> Tokmok
+Jalal-Abad -> Kara-Suu
+Kök-Janggak -> Özgön
+Toktogul -> Kara-Köl
+Nookat -> Kyzyl-Kyya
+Tokmok -> Kant
+Nookat -> Osh
+Kadamzhai -> Kyzyl-Kyya
+Kadamzhai -> Aydarken
+Tash-Kömür -> Kerben
+Aydarken -> Batken
+Mayluu-Suu -> Kara-Köl
+Balykchy -> Kemin
+Kara-Balta -> Bishkek
+Balykchy -> Cholpon-Ata
+Talas -> Toktogul

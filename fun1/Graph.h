@@ -15,11 +15,18 @@ const double MAX_DISTANCE = 1e9;
 class Graph {
 private:
     std::unordered_map<std::string, std::vector<Flight>> adjacencyList;
+    std::unordered_map<std::string, double> latitude;
+    std::unordered_map<std::string, double> longitude;
 
 public:
     Graph() = default;
 
     Graph(const std::vector<City> &cities, double maxDistance) {
+        for (const auto &city: cities) {
+            latitude[city.getName()] = city.getLatitude();
+            longitude[city.getName()] = city.getLongitude();
+        }
+
         for (int i = 0; i < cities.size(); i++) {
             for (int j = 0; j < cities.size(); j++) {
                 if (i != j) {
@@ -126,7 +133,8 @@ public:
             for (const auto &flight: adjacencyList[current]) { //  check through all flights of the current
                 double newDist = distance[current] + flight.getDistance(); // calculate the new distance
                 // 2
-                if (newDist < distance[flight.getDestination()]) { // if the new distance is less than the current distance
+                if (newDist <
+                    distance[flight.getDestination()]) { // if the new distance is less than the current distance
                     distance[flight.getDestination()] = newDist; // update the distance
                     previous[flight.getDestination()] = current; // update the previous city
                 }
@@ -146,18 +154,86 @@ public:
         return path;
     }
 
-    // todo kruskalMST crete a new graph with the minimum distance
-//    std::vector<Flight> kruskalMST() {
-//        std::vector<Flight> mst;
-//
-//        std::unordered_map<std::string, std::string> parent;
-//        for (const auto &cityPair: adjacencyList) {
-//            parent[cityPair.first] = cityPair.first;
-//        }
-//
-//
-//        return mst;
-//    }
+    void shortestPathToMyMaps(const std::vector<std::string> &shortestPath, std::string &filePath) {
+        std::ofstream file;
+        file.open(filePath);
+
+        file << "WKT,Name" << std::endl;
+        file << "\"LINESTRING(";
+
+        for (int i = 0; i < shortestPath.size(); i++) {
+            file << longitude[shortestPath[i]] << " " << latitude[shortestPath[i]];
+            if (i != shortestPath.size() - 1) {
+                file << ",";
+            }
+        }
+
+        file << ")\",Shortest Path" << std::endl;
+    }
+
+    // этот код вроде работает но нужно проверить на корректность и понять потому пока не понимаю как он работает
+    std::vector<Flight> kruskalMST() {
+        std::vector<Flight> mst;
+
+        std::unordered_map<std::string, std::string> parent;
+        for (const auto &cityPair: adjacencyList) {
+            parent[cityPair.first] = cityPair.first;
+        }
+
+        std::vector<Flight> edges;
+        for (const auto &cityPair: adjacencyList) {
+            for (const auto &flight: cityPair.second) {
+                edges.push_back(flight);
+            }
+        }
+        std::sort(edges.begin(), edges.end(),
+                  [](const Flight &a, const Flight &b) {
+                      return a.getDistance() < b.getDistance();
+                  });
+
+        for (const auto &edge: edges) {
+            std::string originParent = findParent(parent, edge.getOrigin());
+            std::string destinationParent = findParent(parent, edge.getDestination());
+            if (originParent != destinationParent) {
+                mst.push_back(edge);
+                parent[originParent] = destinationParent;
+            }
+        }
+
+        return mst;
+    }
+
+    void printMST(const std::vector<Flight> &mst, const std::string &path) {
+        std::ofstream file;
+        file.open(path);
+
+        file << "Name" << std::endl;
+        for (const auto &edge: mst) {
+            file << edge.getOrigin() << " -> " << edge.getDestination() << std::endl;
+        }
+    }
+
+    std::string findParent(std::unordered_map<std::string, std::string> &parent, const std::string &city) {
+        if (parent[city] != city) {
+            parent[city] = findParent(parent, parent[city]); // Путь сжатия: привязываем вершину к корню компоненты
+        }
+        return parent[city];
+    }
+
+    void MSTToMyMaps(const std::vector<Flight> &mst, std::string &filePath) {
+        std::ofstream file;
+        file.open(filePath);
+
+        file << "WKT,Name" << std::endl;
+
+        for (const auto &edge: mst) {
+            file << "\"LINESTRING(" << longitude[edge.getOrigin()] << " " << latitude[edge.getOrigin()] << ","
+                 << longitude[edge.getDestination()] << " " << latitude[edge.getDestination()] << ")\",MST"
+                 << std::endl;
+        }
+
+    }
+
 
 #endif // ALGORITHMS_PERSONAL_REPO_KARYPZHANOV_K_AUCA_2022_GRAPH_H
 
