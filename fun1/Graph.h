@@ -21,23 +21,27 @@ private:
 public:
     Graph() = default;
 
+
     Graph(const std::vector<City> &cities, double maxDistance) {
+        // create a map and add the latitude and longitude of each city
         for (const auto &city: cities) {
             latitude[city.getName()] = city.getLatitude();
             longitude[city.getName()] = city.getLongitude();
         }
 
+        // create a flight between each pair of cities
         for (int i = 0; i < cities.size(); i++) {
             for (int j = 0; j < cities.size(); j++) {
-                if (i != j) {
+                if (i != j) { // if the cities are different
                     double distance = Flight::calculateDistance(cities[i], cities[j]);
-                    if (distance <= maxDistance) {
+                    if (distance <= maxDistance) { // if the distance is less than the maxDistance
                         Flight flight(cities[i].getName(), cities[j].getName(), distance);
                         adjacencyList[cities[i].getName()].push_back(flight);
                     }
                 }
             }
         }
+
     }
 
     std::vector<std::string> findRoute(const std::string &origin, const std::string &destination) {
@@ -154,6 +158,7 @@ public:
         return path;
     }
 
+    // output the shortest path to the file
     void shortestPathToMyMaps(const std::vector<std::string> &shortestPath, std::string &filePath) {
         std::ofstream file;
         file.open(filePath);
@@ -161,6 +166,7 @@ public:
         file << "WKT,Name" << std::endl;
         file << "\"LINESTRING(";
 
+        // output the path to the file
         for (int i = 0; i < shortestPath.size(); i++) {
             file << longitude[shortestPath[i]] << " " << latitude[shortestPath[i]];
             if (i != shortestPath.size() - 1) {
@@ -168,35 +174,40 @@ public:
             }
         }
 
-        file << ")\",Shortest Path" << std::endl;
+        file << ")\",Shortest Path between " << shortestPath[0] << " -> "
+             << shortestPath[shortestPath.size() - 1]
+             << std::endl;
     }
 
-    // этот код вроде работает но нужно проверить на корректность и понять потому пока не понимаю как он работает
     std::vector<Flight> kruskalMST() {
         std::vector<Flight> mst;
 
+        // create a map  and set the parent of each city to itself because each city is a separated
         std::unordered_map<std::string, std::string> parent;
         for (const auto &cityPair: adjacencyList) {
             parent[cityPair.first] = cityPair.first;
         }
 
+        //  create a vector and add all the edges to the vector
         std::vector<Flight> edges;
         for (const auto &cityPair: adjacencyList) {
             for (const auto &flight: cityPair.second) {
                 edges.push_back(flight);
             }
         }
+
+        // sort the edges by distance
         std::sort(edges.begin(), edges.end(),
                   [](const Flight &a, const Flight &b) {
                       return a.getDistance() < b.getDistance();
                   });
 
         for (const auto &edge: edges) {
-            std::string originParent = findParent(parent, edge.getOrigin());
-            std::string destinationParent = findParent(parent, edge.getDestination());
-            if (originParent != destinationParent) {
-                mst.push_back(edge);
-                parent[originParent] = destinationParent;
+            std::string originParent = findParent(parent, edge.getOrigin()); // find the parent of the origin
+            std::string destinationParent = findParent(parent, edge.getDestination()); // find the parent of the destination
+            if (originParent != destinationParent) { // parents are different
+                mst.push_back(edge); // add the edge to the mst
+                parent[originParent] = destinationParent; // update the parent
             }
         }
 
@@ -213,9 +224,10 @@ public:
         }
     }
 
+    // find the parent of the city
     std::string findParent(std::unordered_map<std::string, std::string> &parent, const std::string &city) {
         if (parent[city] != city) {
-            parent[city] = findParent(parent, parent[city]); // Путь сжатия: привязываем вершину к корню компоненты
+            parent[city] = findParent(parent, parent[city]); // path compression, update the parent
         }
         return parent[city];
     }
@@ -226,10 +238,11 @@ public:
 
         file << "WKT,Name" << std::endl;
 
-        for (const auto &edge: mst) {
+        // output the mst to the file
+        for (const auto &edge: mst) { // for each edge in the mst
             file << "\"LINESTRING(" << longitude[edge.getOrigin()] << " " << latitude[edge.getOrigin()] << ","
-                 << longitude[edge.getDestination()] << " " << latitude[edge.getDestination()] << ")\",MST"
-                 << std::endl;
+                 << longitude[edge.getDestination()] << " " << latitude[edge.getDestination()] << ")\",Between "
+                 << edge.getOrigin() << " -> " << edge.getDestination() << std::endl;
         }
 
     }

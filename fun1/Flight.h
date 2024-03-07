@@ -13,6 +13,7 @@ private:
 
 public:
 
+    // calculate the distance between two cities
     static double calculateDistance(const City &city1, const City &city2) {
         const double R = 6371.0;  // Earth's radius in kilometers
         double lat1 = city1.getLatitude() * M_PI / 180.0;
@@ -32,17 +33,14 @@ public:
 
     Flight() = default;
 
+
     Flight(const std::string &origin, const std::string &destination, double distance) {
         this->origin = origin;
         this->destination = destination;
         this->distance = distance;
     }
 
-    Flight(const std::string &origin, const std::string &destination) {
-        this->origin = origin;
-        this->destination = destination;
-        this->distance = 0;
-    }
+
 
     std::string getOrigin() const {
         return origin;
