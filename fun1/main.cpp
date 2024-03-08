@@ -65,6 +65,25 @@ int main() {
         cities.emplace_back(name, latitude, longitude);    //  create City objects and add cities vector
     }
 
+    std::ifstream file2ToRead("../fun1/fly_map.csv");
+    std::string line2;
+    while (std::getline(file2ToRead, line2)) {
+        std::stringstream eachLine(line2);
+        std::string name;
+        std::string latitudeFake;
+        std::string longitudeFake;
+
+        std::getline(eachLine, name, ',');
+        std::getline(eachLine, latitudeFake, ',');
+        std::getline(eachLine, longitudeFake, ',');
+
+        //  convert string to double
+        double latitude = std::stod(latitudeFake);
+        double longitude = std::stod(longitudeFake);
+
+        cities.emplace_back(name, latitude, longitude);    //  create City objects and add cities vector
+    }
+
     // output code
     displayMenu1();
     double maxDistance;
