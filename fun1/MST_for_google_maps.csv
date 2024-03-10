@@ -2,4 +2,34 @@ WKT,Name
 "LINESTRING(75.6917 42.7861,75.5833 42.75)",Between Kemin -> Orlovka
 "LINESTRING(69.56 39.94,69.5275 39.8389)",Between Sülüktü -> Раззаков
 "LINESTRING(73.85 42.8333,73.68 42.83)",Between Kara-Balta -> Kayyngdy
-"LINESTRING(74.85 42.8833,74.6122 42.8747)",Between Kant -> Bishkek
+"LINESTRING(74.6122 42.8747,74.85 42.8833)",Between Bishkek -> Kant
+"LINESTRING(73.2 41.0333,73 40.9333)",Between Kök-Janggak -> Jalal-Abad
+"LINESTRING(72.8833 40.7,72.7833 40.5333)",Between Kara-Suu -> Osh
+"LINESTRING(72.4833 41.0319,72.7472 41.0417)",Between Kochkor-Ata -> Bazar-Korgon
+"LINESTRING(72.2167 41.35,72.448 41.2457)",Between Tash-Kömür -> Mayluu-Suu
+"LINESTRING(72.448 41.2457,72.4833 41.0319)",Between Mayluu-Suu -> Kochkor-Ata
+"LINESTRING(72.7472 41.0417,73 40.9333)",Between Bazar-Korgon -> Jalal-Abad
+"LINESTRING(75.2833 42.8333,75.5833 42.75)",Between Tokmok -> Orlovka
+"LINESTRING(72.8833 40.7,73 40.9333)",Between Kara-Suu -> Jalal-Abad
+"LINESTRING(73.2 41.0333,73.3 40.7667)",Between Kök-Janggak -> Özgön
+"LINESTRING(72.6686 41.6311,72.9389 41.8722)",Between Kara-Köl -> Toktogul
+"LINESTRING(72.1306 40.2611,72.55 40.25)",Between Kyzyl-Kyya -> Nookat
+"LINESTRING(75.2833 42.8333,74.85 42.8833)",Between Tokmok -> Kant
+"LINESTRING(72.7833 40.5333,72.55 40.25)",Between Osh -> Nookat
+"LINESTRING(71.7236 40.1267,72.1306 40.2611)",Between Kadamzhai -> Kyzyl-Kyya
+"LINESTRING(71.33 39.94,71.7236 40.1267)",Between Aydarken -> Kadamzhai
+"LINESTRING(72.2167 41.35,71.75 41.5)",Between Tash-Kömür -> Kerben
+"LINESTRING(71.33 39.94,70.8167 40.0667)",Between Aydarken -> Batken
+"LINESTRING(72.6686 41.6311,72.448 41.2457)",Between Kara-Köl -> Mayluu-Suu
+"LINESTRING(75.6917 42.7861,76.1803 42.4611)",Between Kemin -> Balykchy
+"LINESTRING(73.85 42.8333,74.6122 42.8747)",Between Kara-Balta -> Bishkek
+"LINESTRING(77.0833 42.65,76.1803 42.4611)",Between Cholpon-Ata -> Balykchy
+"LINESTRING(72.2333 42.5167,72.9389 41.8722)",Between Talas -> Toktogul
+"LINESTRING(69.56 39.94,70.8167 40.0667)",Between Sülüktü -> Batken
+"LINESTRING(77.0833 42.65,78.3917 42.4903)",Between Cholpon-Ata -> Karakol
+"LINESTRING(76.1803 42.4611,76 41.4333)",Between Balykchy -> Naryn
+"LINESTRING(73.68 42.83,72.9389 41.8722)",Between Kayyngdy -> Toktogul
+"LINESTRING(69.56 39.94,69.2401 41.2995)",Between Sülüktü -> Tashkent
+"LINESTRING(78.3917 42.4903,86.925 27.9881)",Between Karakol -> Mount Everest
+"LINESTRING(86.925 27.9881,142.592 11.3733)",Between Mount Everest -> Mariana Trench
+"LINESTRING(69.2401 41.2995,-71 25)",Between Tashkent -> Bermuda Triangle

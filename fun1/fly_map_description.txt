@@ -9,3 +9,13 @@ Tashkent
 Tashkent is home to Amir Timur Square, which is decorated with statues and fountains paying homage to the legendary
 conqueror of the city. Tashkent Square consists of a mixture of Soviet-era architecture and modern developments
 that reflect the transformation of Tashkent into a cosmopolitan center.
+
+Mount Everest
+It is the highest mountain on Earth, located in the Himalayas on the border of Nepal and Tibet.
+Its height is approximately 8,848.86 meters above sea level. Everest is a popular destination for climbers from all over
+ the world, but climbing it requires considerable physical training and experience.
+
+Mariana Trench
+This is the deepest part of the world ocean, located in the western Pacific Ocean,
+near the Mariana Islands. Its maximum known depth is approximately 10.984 meters.
+The Mariana Trench is one of the least explored places on Earth due to its extreme depth.

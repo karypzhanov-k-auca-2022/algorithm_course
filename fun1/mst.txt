@@ -2,4 +2,34 @@ Name
 Kemin -> Orlovka
 Sülüktü -> Раззаков
 Kara-Balta -> Kayyngdy
-Kant -> Bishkek
+Bishkek -> Kant
+Kök-Janggak -> Jalal-Abad
+Kara-Suu -> Osh
+Kochkor-Ata -> Bazar-Korgon
+Tash-Kömür -> Mayluu-Suu
+Mayluu-Suu -> Kochkor-Ata
+Bazar-Korgon -> Jalal-Abad
+Tokmok -> Orlovka
+Kara-Suu -> Jalal-Abad
+Kök-Janggak -> Özgön
+Kara-Köl -> Toktogul
+Kyzyl-Kyya -> Nookat
+Tokmok -> Kant
+Osh -> Nookat
+Kadamzhai -> Kyzyl-Kyya
+Aydarken -> Kadamzhai
+Tash-Kömür -> Kerben
+Aydarken -> Batken
+Kara-Köl -> Mayluu-Suu
+Kemin -> Balykchy
+Kara-Balta -> Bishkek
+Cholpon-Ata -> Balykchy
+Talas -> Toktogul
+Sülüktü -> Batken
+Cholpon-Ata -> Karakol
+Balykchy -> Naryn
+Kayyngdy -> Toktogul
+Sülüktü -> Tashkent
+Karakol -> Mount Everest
+Mount Everest -> Mariana Trench
+Tashkent -> Bermuda Triangle
