@@ -11,14 +11,16 @@ private:
     double longitude;
 
 public:
-    City() = default;
+    City() = default; // default constructor
 
+    // constructor
     City(const std::string &name, double latitude, double longitude) {
         this->name = name;
         this->latitude = latitude;
         this->longitude = longitude;
     }
 
+    // getters
     std::string getName() const {
         return name;
     }

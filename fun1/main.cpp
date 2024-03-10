@@ -151,7 +151,7 @@ int main() {
         std::cout << "The shortest path between " << originNormalized << " and " << destinationNormalized
                   << " has been created in a file: " << fileName << "."
                   << std::endl;
-        graph.shortestPathToMyMaps(route, fileName);
+        graph.shortestPathToMyMaps(route, fileName); // print the shortest path to the file
 
     } else if (choice1 == 3) { // create a route map between all the cities
         Graph graph(cities, maxDistance);
@@ -165,7 +165,7 @@ int main() {
                   << std::endl;
 
         fileName = "../fun1/MST_for_google_maps.csv";
-        graph.MSTToMyMaps(mst, fileName);
+        graph.MSTToMyMaps(mst, fileName); // print the MST to the file
         std::cout << "The MST map for google maps between all the cities has been created in a file: " << fileName
                   << "."
                   << std::endl;

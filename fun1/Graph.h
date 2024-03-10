@@ -15,7 +15,7 @@ const double MAX_DISTANCE = 1e9;
 
 class Graph {
 private:
-    std::unordered_map<std::string, std::vector<Flight>> adjacencyList;
+    std::unordered_map<std::string, std::vector<Flight>> adjacencyList; // store the flights between cities
     std::unordered_map<std::string, double> latitude;
     std::unordered_map<std::string, double> longitude;
     std::string currentCity;
@@ -220,6 +220,7 @@ public:
         std::ofstream file;
         file.open(path);
 
+        // output the mst to the file
         file << "Name" << std::endl;
         for (const auto &edge: mst) {
             file << edge.getOrigin() << " -> " << edge.getDestination() << std::endl;
@@ -249,6 +250,7 @@ public:
 
     }
 
+    // display all available cities
     void displayAvailableCities() {
         std::cout << "You are now in " << currentCity << ". You can go to: " << std::endl;
         for (int i = 0; i < adjacencyList[currentCity].size(); i++) { // display all available cities
@@ -263,6 +265,7 @@ public:
         std::cout << std::endl;
     }
 
+    // move to the city
     void moveToCity(const std::string &city) {
         if (adjacencyList.find(city) != adjacencyList.end()) {
             currentCity = city; // if we have the city in the list, set the current city
