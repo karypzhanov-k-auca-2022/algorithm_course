@@ -26,6 +26,9 @@ public:
     Graph(const std::vector<City> &cities, double maxDistance) {
         // create a map and add the latitude and longitude of each city
         for (const auto &city: cities) {
+            if (city.getLatitude() < -90 || city.getLatitude() > 90 || city.getLongitude() < -180 || city.getLongitude() > 180) {
+                throw std::invalid_argument("Invalid coordinates for city: " + city.getName());
+            }
             latitude[city.getName()] = city.getLatitude();
             longitude[city.getName()] = city.getLongitude();
         }
@@ -46,6 +49,9 @@ public:
     }
 
     std::vector<std::string> findRoute(const std::string &origin, const std::string &destination) {
+        if (adjacencyList.find(origin) == adjacencyList.end() || adjacencyList.find(destination) == adjacencyList.end()) {
+            throw std::invalid_argument("Origin or destination city not found in the graph");
+        }
         std::unordered_set<std::string> visited; // create a vector to store visited cities
         std::vector<std::string> path = dfs(origin, destination, visited);// call the dfs function
         return path;
@@ -108,6 +114,10 @@ public:
   */
 
     std::vector<std::string> shortestPath(const std::string &origin, const std::string &destination) {
+        if (adjacencyList.find(origin) == adjacencyList.end() || adjacencyList.find(destination) == adjacencyList.end()) {
+            throw std::invalid_argument("Origin or destination city not found in the graph");
+        }
+
         std::unordered_map<std::string, double> distance; // store distances from the start city to all others
         std::unordered_map<std::string, std::string> previous; // store the previous city on the shortest path to each city
         std::unordered_set<std::string> unvisited; // set all cities as unvisited

@@ -95,12 +95,20 @@ int main() {
     // output code
     displayMenu1();
     double maxDistance;
-    std::cin >> maxDistance;
+    while (!(std::cin >> maxDistance) || maxDistance <= 0) { // check if the input is valid
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cout << "Invalid input. Please enter a positive number: ";
+    }
+
 
     displayMenu2();
-
     int choice1;
-    std::cin >> choice1;
+    while (!(std::cin >> choice1) || choice1 < 1 || choice1 > 6) { // check if the input is valid
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cout << "Invalid input. Please enter a number between 1 and 6: ";
+    }
 
     // Clear input buffer
     std::cin.ignore();
@@ -184,6 +192,12 @@ int main() {
             displayMenu44();
             int choice2;
             std::cin >> choice2;  // user input like digit
+            while (!(std::cin >> choice2) || choice2 < 1 || choice2 > graph.getCurrentAvailableCities().size() + 1) {
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                std::cout << "Invalid input. Please enter a number between 1 and "
+                          << graph.getCurrentAvailableCities().size() + 1 << ": ";
+            }
             std::cin.ignore(); // Clear input buffer
 
             //  check if the user input is valid
@@ -191,7 +205,8 @@ int main() {
                 std::string selectedCity;
                 selectedCity = graph.getCurrentAvailableCities()[choice2 - 1]; //  get the selected city
                 currentCity = selectedCity;
-            } else if (choice2 == graph.getCurrentAvailableCities().size() + 1) { // if user choose last option then exit
+            } else if (choice2 ==
+                       graph.getCurrentAvailableCities().size() + 1) { // if user choose last option then exit
                 std::cout << "Exiting." << std::endl;
                 exit(0);
             }
@@ -201,6 +216,8 @@ int main() {
     } else if (choice1 == 6) {
         std::cout << "bye bye!" << std::endl; // exit
         exit(0);
+    } else {
+        std::cout << "Invalid input. Please enter a number between 1 and 6: ";
     }
 
     return 0;
