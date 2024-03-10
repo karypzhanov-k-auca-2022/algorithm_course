@@ -9,6 +9,7 @@
 #include "queue"
 #include "City.h"
 #include "Flight.h"
+#include "fstream"
 
 const double MAX_DISTANCE = 1e9;
 
@@ -17,7 +18,7 @@ private:
     std::unordered_map<std::string, std::vector<Flight>> adjacencyList;
     std::unordered_map<std::string, double> latitude;
     std::unordered_map<std::string, double> longitude;
-    std::vector<std::string> currentAvailableCities;
+    std::string currentCity;
 public:
     Graph() = default;
 
@@ -248,32 +249,33 @@ public:
 
     }
 
-    void displayAvailableCities(const std::string &origin) {
-        std::cout << "You are now in " << origin << "." << " You can go to: " << std::endl;
-        for (int i = 0; i < adjacencyList[origin].size(); i++) {
-            currentAvailableCities.push_back(adjacencyList[origin][i].getDestination());
+    void displayAvailableCities() {
+        std::cout << "You are now in " << currentCity << ". You can go to: " << std::endl;
+        for (int i = 0; i < adjacencyList[currentCity].size(); i++) { // display all available cities
+            currentCity = adjacencyList[currentCity][i].getOrigin(); // set the current city
+            std::cout << i + 1 << ". " << adjacencyList[currentCity][i].getDestination() << " ("
+                      << adjacencyList[currentCity][i].getDistance() << " km) " << std::endl;
 
-            std::cout << i + 1 << ". " << adjacencyList[origin][i].getDestination() << " ("
-                      << adjacencyList[origin][i].getDistance() << " km) " << std::endl;
-
-            if (i + 1 == adjacencyList[origin].size()) {
+            if (i + 1 == adjacencyList[currentCity].size()) { // if the last city
                 std::cout << i + 2 << "." << " Exit" << std::endl;
             }
-
         }
-            std::cout << std::endl;
+        std::cout << std::endl;
     }
 
     void moveToCity(const std::string &city) {
         if (adjacencyList.find(city) != adjacencyList.end()) {
-            std::cout << "Moving to " << city << "..." << std::endl;
-        } else {
-            std::cout << "Sorry, " << city << " is not a valid destination." << std::endl;
+            currentCity = city; // if we have the city in the list, set the current city
         }
     }
 
+    // get the current available cities
     std::vector<std::string> getCurrentAvailableCities() {
-        return currentAvailableCities;
+        std::vector<std::string> availableCities;
+        for (const auto &i: adjacencyList[currentCity]) { // get all available cities from the current special city
+            availableCities.push_back(i.getDestination());
+        }
+        return availableCities;
     }
 
 #endif // ALGORITHMS_PERSONAL_REPO_KARYPZHANOV_K_AUCA_2022_GRAPH_H

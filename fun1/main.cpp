@@ -41,7 +41,7 @@ static void displayMenu4() {
 }
 
 static void displayMenu44() {
-    std::cout << "Please, choose where you want to go: " << std::endl;
+    std::cout << "Please, choose where you want to go: ";
 }
 
 // my display function 3
@@ -170,35 +170,30 @@ int main() {
                   << "."
                   << std::endl;
     } else if (choice1 == 4) {
-        displayMenu4();
-        std::string currentCity;
         Graph graph(cities, maxDistance);
+
+        displayMenu4();
+        std::string city; // user input
+        std::getline(std::cin, city);
+        std::string currentCity = normalizeCityName(city);
+
         while (true) {
-            std::string city;
-            std::getline(std::cin, city);
-            std::string cityNormalized = normalizeCityName(city);
+            graph.moveToCity(currentCity);
+            graph.displayAvailableCities();
 
-            currentCity = cityNormalized;
-            graph.displayAvailableCities(cityNormalized);
-
-            std::vector<std::string> availableCities = graph.getCurrentAvailableCities();
-            std::cout << "Please, choose where you want to go (or enter " << availableCities.size() + 1
-                      << " to exit): ";
+            displayMenu44();
             int choice2;
-            std::cin >> choice2;
-            std::cin.ignore();
+            std::cin >> choice2;  // user input like digit
+            std::cin.ignore(); // Clear input buffer
 
-            if (choice2 >= 1 && choice2 <= availableCities.size()) {
-                std::string selectedCity = availableCities[choice2 - 1];
-                std::cout << "You selected to go to " << selectedCity << std::endl;
-                graph.moveToCity(selectedCity);
+            //  check if the user input is valid
+            if (choice2 >= 1 && choice2 <= graph.getCurrentAvailableCities().size()) {
+                std::string selectedCity;
+                selectedCity = graph.getCurrentAvailableCities()[choice2 - 1]; //  get the selected city
                 currentCity = selectedCity;
-            } else if (choice2 == availableCities.size() + 1) {
-                std::cout << "Exiting browsing mode." << std::endl;
-                break;
-            } else {
-                std::cout << "Invalid choice. Exiting browsing mode." << std::endl;
-                break;
+            } else if (choice2 == graph.getCurrentAvailableCities().size() + 1) { // if user choose last option then exit
+                std::cout << "Exiting." << std::endl;
+                exit(0);
             }
         }
     } else if (choice1 == 5) {
