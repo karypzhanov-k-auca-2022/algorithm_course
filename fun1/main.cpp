@@ -37,7 +37,7 @@ static void displayMenu2() {
 }
 
 static void displayMenu4() {
-    std::cout << "Please enter the city from which you would to start browsing." << std::endl;
+    std::cout << "Please enter the city from which you would like to start browsing." << std::endl;
 }
 
 static void displayMenu44() {
@@ -171,19 +171,35 @@ int main() {
                   << std::endl;
     } else if (choice1 == 4) {
         displayMenu4();
-
+        std::string currentCity;
+        Graph graph(cities, maxDistance);
         while (true) {
-            Graph graph(cities, maxDistance);
             std::string city;
             std::getline(std::cin, city);
             std::string cityNormalized = normalizeCityName(city);
 
+            currentCity = cityNormalized;
             graph.displayAvailableCities(cityNormalized);
 
-            std::cout << "Please, choose where you want to go: ";
+            std::vector<std::string> availableCities = graph.getCurrentAvailableCities();
+            std::cout << "Please, choose where you want to go (or enter " << availableCities.size() + 1
+                      << " to exit): ";
             int choice2;
             std::cin >> choice2;
+            std::cin.ignore();
 
+            if (choice2 >= 1 && choice2 <= availableCities.size()) {
+                std::string selectedCity = availableCities[choice2 - 1];
+                std::cout << "You selected to go to " << selectedCity << std::endl;
+                graph.moveToCity(selectedCity);
+                currentCity = selectedCity;
+            } else if (choice2 == availableCities.size() + 1) {
+                std::cout << "Exiting browsing mode." << std::endl;
+                break;
+            } else {
+                std::cout << "Invalid choice. Exiting browsing mode." << std::endl;
+                break;
+            }
         }
     } else if (choice1 == 5) {
         std::cout << "You chose 5" << std::endl;

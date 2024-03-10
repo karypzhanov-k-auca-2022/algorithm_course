@@ -17,7 +17,7 @@ private:
     std::unordered_map<std::string, std::vector<Flight>> adjacencyList;
     std::unordered_map<std::string, double> latitude;
     std::unordered_map<std::string, double> longitude;
-
+    std::vector<std::string> currentAvailableCities;
 public:
     Graph() = default;
 
@@ -251,14 +251,29 @@ public:
     void displayAvailableCities(const std::string &origin) {
         std::cout << "You are now in " << origin << "." << " You can go to: " << std::endl;
         for (int i = 0; i < adjacencyList[origin].size(); i++) {
+            currentAvailableCities.push_back(adjacencyList[origin][i].getDestination());
+
             std::cout << i + 1 << ". " << adjacencyList[origin][i].getDestination() << " ("
                       << adjacencyList[origin][i].getDistance() << " km) " << std::endl;
 
             if (i + 1 == adjacencyList[origin].size()) {
                 std::cout << i + 2 << "." << " Exit" << std::endl;
             }
-        }
 
+        }
+            std::cout << std::endl;
+    }
+
+    void moveToCity(const std::string &city) {
+        if (adjacencyList.find(city) != adjacencyList.end()) {
+            std::cout << "Moving to " << city << "..." << std::endl;
+        } else {
+            std::cout << "Sorry, " << city << " is not a valid destination." << std::endl;
+        }
+    }
+
+    std::vector<std::string> getCurrentAvailableCities() {
+        return currentAvailableCities;
     }
 
 #endif // ALGORITHMS_PERSONAL_REPO_KARYPZHANOV_K_AUCA_2022_GRAPH_H
