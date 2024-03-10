@@ -204,7 +204,8 @@ public:
 
         for (const auto &edge: edges) {
             std::string originParent = findParent(parent, edge.getOrigin()); // find the parent of the origin
-            std::string destinationParent = findParent(parent, edge.getDestination()); // find the parent of the destination
+            std::string destinationParent = findParent(parent,
+                                                       edge.getDestination()); // find the parent of the destination
             if (originParent != destinationParent) { // parents are different
                 mst.push_back(edge); // add the edge to the mst
                 parent[originParent] = destinationParent; // update the parent
@@ -247,6 +248,18 @@ public:
 
     }
 
+    void displayAvailableCities(const std::string &origin) {
+        std::cout << "You are now in " << origin << "." << " You can go to: " << std::endl;
+        for (int i = 0; i < adjacencyList[origin].size(); i++) {
+            std::cout << i + 1 << ". " << adjacencyList[origin][i].getDestination() << " ("
+                      << adjacencyList[origin][i].getDistance() << " km) " << std::endl;
+
+            if (i + 1 == adjacencyList[origin].size()) {
+                std::cout << i + 2 << "." << " Exit" << std::endl;
+            }
+        }
+
+    }
 
 #endif // ALGORITHMS_PERSONAL_REPO_KARYPZHANOV_K_AUCA_2022_GRAPH_H
 

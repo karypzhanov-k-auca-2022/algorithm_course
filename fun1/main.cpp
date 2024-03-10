@@ -36,6 +36,14 @@ static void displayMenu2() {
     std::cout << "6. Exit." << std::endl;
 }
 
+static void displayMenu4() {
+    std::cout << "Please enter the city from which you would to start browsing." << std::endl;
+}
+
+static void displayMenu44() {
+    std::cout << "Please, choose where you want to go: " << std::endl;
+}
+
 // my display function 3
 static void processDisplay() {
     std::cout << "Creating a route between two cities." << std::endl;
@@ -91,13 +99,13 @@ int main() {
 
     displayMenu2();
 
-    int choice;
-    std::cin >> choice;
+    int choice1;
+    std::cin >> choice1;
 
     // Clear input buffer
     std::cin.ignore();
 
-    if (choice == 1) { // check if a route between two cities exists
+    if (choice1 == 1) { // check if a route between two cities exists
         std::string origin;
         std::string destination;
         std::cout << "Enter the origin city: ";
@@ -117,7 +125,7 @@ int main() {
             std::cout << "There is no route between " << originNormalized << " and " << destinationNormalized << "."
                       << std::endl;
         }
-    } else if (choice == 2) { // create a short route between two cities
+    } else if (choice1 == 2) { // create a short route between two cities
         std::string origin;
         std::string destination;
         std::cout << "Enter the origin city: ";
@@ -145,7 +153,7 @@ int main() {
                   << std::endl;
         graph.shortestPathToMyMaps(route, fileName);
 
-    } else if (choice == 3) { // create a route map between all the cities
+    } else if (choice1 == 3) { // create a route map between all the cities
         Graph graph(cities, maxDistance);
 
         auto mst = graph.kruskalMST(); // create a minimum spanning tree
@@ -161,11 +169,25 @@ int main() {
         std::cout << "The MST map for google maps between all the cities has been created in a file: " << fileName
                   << "."
                   << std::endl;
-    } else if (choice == 4) {
-        std::cout << "You chose 4" << std::endl;
-    } else if (choice == 5) {
+    } else if (choice1 == 4) {
+        displayMenu4();
+
+        while (true) {
+            Graph graph(cities, maxDistance);
+            std::string city;
+            std::getline(std::cin, city);
+            std::string cityNormalized = normalizeCityName(city);
+
+            graph.displayAvailableCities(cityNormalized);
+
+            std::cout << "Please, choose where you want to go: ";
+            int choice2;
+            std::cin >> choice2;
+
+        }
+    } else if (choice1 == 5) {
         std::cout << "You chose 5" << std::endl;
-    } else if (choice == 6) {
+    } else if (choice1 == 6) {
         std::cout << "bye bye!" << std::endl; // exit
         exit(0);
     }
