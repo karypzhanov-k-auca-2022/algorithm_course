@@ -6,6 +6,8 @@ int main() {
 
     return 0;
 }
+1) optimal substructure
+2)
 -----------------------------------------------------------------------------------------------------
 use header files to don't compile all code.
 Linked list;
