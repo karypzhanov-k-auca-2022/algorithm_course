@@ -25,7 +25,7 @@ public:
 
 
 int main() {
-    int n = 5;
+    int n = 4;
     Solution solution;
 
 

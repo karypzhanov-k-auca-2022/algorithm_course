@@ -19,7 +19,7 @@ add_executable(ojjj1 oj/ojjj1.cpp)
 add_executable(ojjj2 oj/ojjj2.cpp)
 add_executable(ojjj3 oj/ojjj3.cpp)
 add_executable(ojjj4 oj/ojjj4.cpp)
-
+add_executable(bucket stuff/bucket.cpp)
 
 add_executable(plane_routes_creator
         fun1/main.cpp
