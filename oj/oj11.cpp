@@ -28,7 +28,6 @@ int main() {
     int n = 4;
     Solution solution;
 
-
     cout << solution.climbStairs(n) << endl;
 
     return 0;
