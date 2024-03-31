@@ -31,6 +31,11 @@ add_executable(plane_routes_creator
         fun1/Flight.h
 )
 
+add_executable(kamar
+        fun3/main.cpp
+)
+
+
 add_executable(GAME
         stuff/My_Game/main.cpp
         stuff/My_Game/Animal.cpp
