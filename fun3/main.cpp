@@ -5,14 +5,17 @@
 
 using namespace std;
 
-void print_line() {
-    cout << "-----------------------------------" << endl;
-}
-
 struct Budget {
     int financial;
     int resource;
     int ecological;
+};
+
+struct Option {
+    int cost;
+    int capacity_increase;
+    int resources_required;
+    int impact_score;
 };
 
 int main() {
@@ -35,45 +38,49 @@ int main() {
     // data
     Budget budget;
     budget = {0, 0, 0};
-    vector<int> cost;
-    vector<int> capacity_increase;
-    vector<int> resources_required;
-    vector<int> impact_score;
+    vector<Option> options;
 
-
+    int n = 0;
     while (getline(file, line)) {
         stringstream eachLine(line);
-        string word1, word2, word3;
-        getline(eachLine, word1, ' ');
-        getline(eachLine, word2, ' ');
-        getline(eachLine, word3, ' ');
+        string word;
+        getline(eachLine, word, ':');
 
-        if (word1 == "financial") {
-            budget.financial = stoi(word3);
-        } else if (word1 == "resource") {
-            budget.resource = stoi(word3);
-        } else if (word1 == "ecological") {
-            budget.ecological = stoi(word3);
+        if (word == "financial") {
+            getline(eachLine, word, ' ');
+            budget.financial = stoi(word);
+        } else if (word == "resource") {
+            getline(eachLine, word, ' ');
+            budget.resource = stoi(word);
+        } else if (word == "ecological") {
+            getline(eachLine, word, ' ');
+            budget.ecological = stoi(word);
+        } else if (word == "cost") {
+            Option option;
+            getline(eachLine, word, ',');
+            option.cost = stoi(word);
+            getline(eachLine, word, ':');
+            getline(eachLine, word, ',');
+            option.capacity_increase = stoi(word);
+            getline(eachLine, word, ':');
+            getline(eachLine, word, ',');
+            option.resources_required = stoi(word);
+            getline(eachLine, word, ':');
+            getline(eachLine, word, ',');
+            option.impact_score = stoi(word);
+            options.push_back(option);
         }
-
-
-//        string part1, part2, part3, part4;
-//        getline(eachLine, part1, ',');
-//        getline(eachLine, part2, ',');
-//        getline(eachLine, part3, ',');
-//        getline(eachLine, part4, ' ');
-//
-//        stringstream ss1(part1);
-//        stringstream ss2(part2);
-//        stringstream ss3(part3);
-//        stringstream ss4(part4);
-
-
     }
 
     cout << "Financial budget: " << budget.financial << endl;
     cout << "Resource budget: " << budget.resource << endl;
     cout << "Ecological budget: " << budget.ecological << endl;
+
+    for (const auto &option: options) {
+        cout << "Option: cost " << option.cost << ", capacity increase " << option.capacity_increase
+             << ", resources required " << option.resources_required << ", impact score " << option.impact_score
+             << endl;
+    }
 
     return 0;
 }
