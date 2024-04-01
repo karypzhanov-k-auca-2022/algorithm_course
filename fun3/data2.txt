@@ -1,0 +1,9 @@
+financial budget 2
+resource budget 2
+ecological budget 2
+
+Options:
+cost: 2, capacity_increase: 50, resources_required: 1, impact_score: 2
+cost: 200, capacity_increase: 80, resources_required: 3, impact_score: 20
+cost: 300, capacity_increase: 120, resources_required: 5, impact_score: 30
+cost: 150, capacity_increase: 60, resources_required: 2, impact_score: 15

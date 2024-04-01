@@ -4,10 +4,19 @@
 using namespace std;
 
 int main() {
-    vector<int> budget = {150, 200, 300, 400, 500};
-    vector<int> impact = {10, 20, 30, 40, 50};
-    vector<int> resources = {25, 50, 75, 100, 125};
-    vector<int> capacity = {50, 60, 70, 80, 90};
+    vector<string> ddata = {"data1", "data2"};
+    cout << "data1 or data2? ";
+    int data;
+    cin >> data;
+
+    string file_name_to_read = "../fun3/" + ddata[data - 1] + ".txt";
+
+    ifstream file1ToRead(file_name_to_read);
+    string line;
+    vector<int> budget;
+    vector<int> impact;
+    vector<int> resources;
+    vector<int> capacity;
 
     int max_budget = 1000;
     int max_impact = 100;
