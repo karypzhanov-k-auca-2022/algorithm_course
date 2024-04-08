@@ -12,15 +12,12 @@ int main() {
     for (int i = 1; i < 5; i++) {
         for (int j = 1; j < 5; j++) {
             if (weights[i] <= j) {
-                dp[i][j] = max(dp[i - 1][j],          price[i] + dp[i - 1][j - weights[i]]);
+                dp[i][j] = max(dp[i - 1][j], dp[i - 1][j - weights[i]] + price[i]);
             } else {
                 dp[i][j] = dp[i - 1][j];
             }
         }
     }
-
-    cout << dp[4][3] << endl;
-    cout << dp.back().back() << endl;
 
 
     return 0;
