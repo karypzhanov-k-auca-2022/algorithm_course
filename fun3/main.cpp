@@ -124,20 +124,23 @@ int main() {
                     dp[i][j][k][l] = dp[i - 1][j][k][l];
                     if (options[i].cost <= j && options[i].resources_required <= k && options[i].impact_score <= l) {
                         dp[i][j][k][l] = max(dp[i - 1][j][k][l],
-                                             dp[i - 1][j - options[i].cost][k - options[i].resources_required][l - options[i].impact_score] + options[i].capacity_increase);
+                                             dp[i - 1][j - options[i].cost][k - options[i].resources_required][l -
+                                                                                                               options[i].impact_score] +
+                                             options[i].capacity_increase);
                     } else {
                         dp[i][j][k][l] = dp[i - 1][j][k][l];
+                    }
                 }
             }
         }
+
+        cout << dp.back().back().back().back() << endl;
+
+
+        // memorize options
+
+        return 0;
     }
 
-    cout << dp.back().back().back().back() << endl;
 
-
-    // memorize options
-
-    return 0;
 }
-
-
