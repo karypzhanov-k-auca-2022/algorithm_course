@@ -6,28 +6,52 @@ int main() {
 
     return 0;
 }
-1) optimal substructure
+
+1)
+optimal substructure
 2)
 -----------------------------------------------------------------------------------------------------
-use header files to don't compile all code.
+use header
+files to
+don't compile all code.
 Linked list;
-array              linked
-read                O1                     On
-        write               O1                     On
-insert              On                     O1
-delete              On                     O1
-журнал                очередь
+array linked
+read O1
+On
+        write
+O1 On
+insert On
+O1
+delete
+On O1
+журнал очередь
 
 -----------------------------------------------------------------------------------------------------
-Stack  ---->        come FIRST and go out LAST
-        Queue  ---->        come FIRST and go FIRST
+Stack  ---->
+come FIRST
+and
+go out
+LAST
+        Queue
+---->
+come FIRST
+and
+go FIRST
 -----------------------------------------------------------------------------------------------------
 
 Overloaded перегруженные
+
 void myFunction(int x);
-void myFunction(double y);   - name of the methods are SAME
+
+void myFunction(double y);
+
+-
+name of
+the methods
+are SAME
 
 Overriding переопределение
+
 class Base {
 public:
     virtual void myFunction() {        //  keyword for override in derived classes
@@ -40,19 +64,31 @@ public:
         // Реализация в производном классе, переопределение базовой функции
     }
 };
+
 -----------------------------------------------------------------------------------------------------
+
 #include <set>
-SET - add unique          and sort
+
+SET -
+add unique
+and
+sort
 
 #include <unordered_set>
-        UNORDERED SET - add unique
+
+        UNORDERED
+SET -
+add unique
 -----------------------------------------------------------------------------------------------------
+
 #include <map>
+
 map<string, int> nameToAge;
 nameToAge["Alice"] = 30;
 nameToAge["Bob"] = 25;
 nameToAge["Alice"] = 32; // Значение для "Alice" обновится
 -----------------------------------------------------------------------------------------------------
+
 int stringToNumber(const string &digits) {
     int number = 0;
     for (int i = 0; i < digits.size(); ++i) {
@@ -63,21 +99,53 @@ int stringToNumber(const string &digits) {
 
 
 -----------------------------------------------------------------------------------------------------
-for (char i : copy) {
-if (duplicates.count(i)) {  // if current symbol in duplicates
+for (
+char i
+: copy) {
+if (duplicates.
+count(i)
+) {  // if current symbol in duplicates
 result += types[1];
 } else {
 result += types[0];
 }
 }
 -----------------------------------------------------------------------------------------------------
-for (const string &key1: realKeys)  to check from START сначала
-for (auto it = copy.rbegin(); it != copy.rend(); ++it)  to check from END с конца
+for (
+const string &key1
+: realKeys)
+to check
+from START
+сначала
+for (
+auto it = copy.rbegin();
+it != copy.
+
+rend();
+
+++it)
+to check
+from END
+с конца
 -----------------------------------------------------------------------------------------------------
-if (uniqChars.find(c) == uniqChars.end()) {   // If MISSING in unique characters.
-if (result.find(key1) == result.end()) {  // check key1 key has been added to the result, if not, adds empty vector
-ЕСЛИ ЕГО НЕТУ
+if (uniqChars.
+find(c)
+== uniqChars.
+
+end()
+
+) {   // If MISSING in unique characters.
+if (result.
+find(key1)
+== result.
+
+end()
+
+) {  // check key1 key has been added to the result, if not, adds empty vector
+ЕСЛИ ЕГО
+НЕТУ
 -----------------------------------------------------------------------------------------------------
+
 #include <sstream>      1деление
 
 string line;
@@ -85,22 +153,42 @@ string type;
 string transaction;
 string element;
 
-getline(cin, line);
+getline(cin, line
+);
 stringstream ss(line);
-ss >> type >> transaction >> element;
+ss >> type >> transaction >>
+element;
 2деление
 istringstream iss(command);
 vector<string> realCommand;
 string word;
 while (iss >> word) {
-realCommand.push_back(word);                 // split worlds and add to vector
+realCommand.
+push_back(word);                 // split worlds and add to vector
 }
 -----------------------------------------------------------------------------------------------------
-Hash_tables  if INT then insert and delete o1
+Hash_tables  if
+INT then
+insert and delete o1
 -----------------------------------------------------------------------------------------------------
 set
-        MapNote {
+        MapNote{
         int hash;
         string value;
         int count;
 }
+
+// обучение с подкреплением
+// reinforcement learning
+
+// agent
+// reward function
+// 1) double reward (State s, Action a);
+// 2) Action policy (Observation o);
+
+// financial budget направо - 500
+// resource budget на меня - 10
+// ecological budget куб - 50
+// option.size вниз - 4
+
+//

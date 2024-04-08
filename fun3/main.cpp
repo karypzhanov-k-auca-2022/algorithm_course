@@ -35,9 +35,8 @@ int main() {
     ifstream file(file_name_to_read);
     string line;
 
-    Budget budget;
-    budget = {0, 0, 0};
-    vector<Option> options;
+    Budget budget = {0, 0, 0};
+    vector<Option> options(1);
 
     // read 3 lines of the file
     int n = 0;
@@ -69,7 +68,7 @@ int main() {
         getline(eachLine, word, ':'); // read until ':'
 
         if (word == "cost") {
-            Option option;
+            Option option{};
             getline(eachLine, word, ',');
             option.cost = stoi(word);
             getline(eachLine, word, ':');
@@ -85,22 +84,60 @@ int main() {
         }
     }
 
-    cout << "Financial budget: " << budget.financial << endl;
-    cout << "Resource budget: " << budget.resource << endl;
-    cout << "Ecological budget: " << budget.ecological << endl;
+//    cout << "Financial budget: " << budget.financial << endl;
+//    cout << "Resource budget: " << budget.resource << endl;
+//    cout << "Ecological budget: " << budget.ecological << endl;
+//
+//    for (const auto &option: options) {
+//        cout << "Option: cost " << option.cost << ", capacity increase " << option.capacity_increase
+//             << ", resources required " << option.resources_required << ", impact score " << option.impact_score
+//             << endl;
+//    }
 
-    for (const auto &option: options) {
-        cout << "Option: cost " << option.cost << ", capacity increase " << option.capacity_increase
-             << ", resources required " << option.resources_required << ", impact score " << option.impact_score
-             << endl;
+
+    vector<vector<vector<vector<int>>>> dp(options.size() + 1, vector<vector<vector<int>>>(budget.financial + 1,
+                                                                                           vector<vector<int>>(
+                                                                                                   budget.resource + 1,
+                                                                                                   vector<int>(
+                                                                                                           budget.ecological +
+                                                                                                           1,
+                                                                                                           0))));  // fill with 0
+
+
+    // Initialize options_memorize
+    vector<vector<vector<vector<vector<int>>>>> options_memorize(options.size() + 1,
+                                                                 vector<vector<vector<vector<int>>>>(
+                                                                         budget.financial + 1,
+                                                                         vector<vector<vector<int>>>(
+                                                                                 budget.resource + 1,
+                                                                                 vector<vector<int>>(
+                                                                                         budget.ecological +
+                                                                                         1,
+                                                                                         vector<int>(options.size() + 1,
+                                                                                                     0)))));  // fill with 0
+
+
+    for (int i = 1; i <= options.size(); i++) {
+        for (int j = 1; j <= budget.financial; j++) {
+            for (int k = 1; k <= budget.resource; k++) {
+                for (int l = 1; l <= budget.ecological; l++) {
+                    dp[i][j][k][l] = dp[i - 1][j][k][l];
+                    if (options[i].cost <= j && options[i].resources_required <= k && options[i].impact_score <= l) {
+                        dp[i][j][k][l] = max(dp[i - 1][j][k][l],
+                                             dp[i - 1][j - options[i].cost][k - options[i].resources_required][l - options[i].impact_score] + options[i].capacity_increase);
+
+                    }
+                }
+            }
+        }
     }
 
-    vector<vector<vector<vector<int>>>> dp(3, vector<vector<vector<int>>>(budget.financial + 1,
-                                                                          vector<vector<int>>(budget.resource + 1,
-                                                                                              vector<int>(
-                                                                                                      budget.ecological +
-                                                                                                      1, -1))));  // fill with -1
+    cout << dp.back().back().back().back() << endl;
 
+
+    // memorize options
 
     return 0;
 }
+
+
