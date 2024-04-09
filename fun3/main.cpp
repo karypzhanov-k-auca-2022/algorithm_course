@@ -19,6 +19,7 @@ struct Option {
     int impact_score;
 };
 
+// todo read from json file
 int main() {
     vector<string> ddata = {"data1", "data2"}; // data files
     cout << "data1 - 1" << endl;

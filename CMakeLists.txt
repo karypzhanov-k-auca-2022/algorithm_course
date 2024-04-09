@@ -1,7 +1,13 @@
 cmake_minimum_required(VERSION 3.24)
 project(algorithms_personal_repo_karypzhanov_k_auca_2022)
-
 set(CMAKE_CXX_STANDARD 20)
+
+include(FetchContent)
+FetchContent_Declare(json URL https://github.com/nlohmann/json/releases/download/v3.11.3/json.tar.xz)
+FetchContent_MakeAvailable(json)
+
+add_executable(kamar_2 fun3/main.cpp)  #
+target_link_libraries(kamar_2 PRIVATE nlohmann_json::nlohmann_json)
 
 add_executable(oj2 oj/oj2.cpp)
 add_executable(oj3 oj/oj3.cpp)
@@ -32,7 +38,7 @@ add_executable(plane_routes_creator
         fun1/Flight.h
 )
 
-add_executable(kamar
+add_executable(kamar_1
         fun3/main.cpp
 )
 
@@ -42,4 +48,3 @@ add_executable(GAME
         stuff/My_Game/Animal.cpp
         stuff/My_Game/Animal.h
 )
-
