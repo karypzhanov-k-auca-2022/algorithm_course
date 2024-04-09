@@ -16,7 +16,7 @@ double Reward (Action action, State state, State nextState) {
 
 Probability Distribution
 
-double Probability (State state, Action action) {
+double Probability (State s, Action a) {
     double probability = 0;
     if (state.isTerminal) {
         probability = 0;
@@ -26,7 +26,7 @@ double Probability (State state, Action action) {
     return probability;
 }
 
-Rewardsmean learning
+Rewardsment learning
 
 Markov Decision Processes
 
@@ -34,10 +34,12 @@ Markov Decision Processes (MDPs) are a mathematical framework for modeling
 decision-making in situations where outcomes are partly random and partly under the control of a decision maker.
 MDPs are useful for studying a wide range of optimization problems solved via dynamic programming and reinforcement learning.
 
+Reversing the MDP
 1) Reward Function
-2) set of Action
-3) set of States/set of observations
+2) Set of Action
+3) Set of States/set of observations
 4) Probability Distribution
 5) Discount Factor (γ)
 
 Action πolicy (Observation) -> Action
+
