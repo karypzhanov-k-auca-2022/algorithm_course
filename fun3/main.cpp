@@ -19,31 +19,21 @@ struct Option {
     int impact_score;
 };
 
-
-// Recursive
-vector<vector<vector<vector<int>>>> dp_recursive(vector<Option> &options, Budget &budget) {
-    vector<vector<vector<vector<int>>>> dp_matrix(options.size() + 1, vector<vector<vector<int>>>(budget.financial + 1,
-                                                                                                  vector<vector<int>>( budget.resource + 1,
-                                            vector<int>( budget.ecological + 1, 0)))); // fill with 0
-
-    for (int i = 1; i <= options.size(); i++) {
-        for (int j = 1; j <= budget.financial; j++) {
-            for (int k = 1; k <= budget.resource; k++) {
-                for (int l = 1; l <= budget.ecological; l++) {
-                    dp_matrix[i][j][k][l] = dp_matrix[i - 1][j][k][l];
-                    if (options[i - 1].cost <= j && options[i - 1].resources_required <= k &&
-                        options[i - 1].impact_score <= l) { // check if the option can be selected
-                        dp_matrix[i][j][k][l] = max(dp_matrix[i - 1][j][k][l], // do not update
-                                             dp_matrix[i - 1][j - options[i - 1].cost]
-                                             [k - options[i - 1].resources_required]
-                                             [ l - options[i - 1].impact_score]
-                                             + options[i - 1].capacity_increase);
-                    }
-                }
-            }
-        }
+// recursive
+int dp_recursive(vector<Option> &options, Budget &budget, int i, int j, int k, int l) { // i - option index, j - financial, k - resource, l - ecological
+    if (i == 0) {
+        return 0;  // base case
     }
-    return dp_matrix;
+
+    if (options[i - 1].cost > j || options[i - 1].resources_required > k || options[i - 1].impact_score > l) { // check if the option can be selected
+        return dp_recursive(options, budget, i - 1, j, k, l); // do not update
+    }
+
+    return max(dp_recursive(options, budget, i - 1, j, k, l), // do not update
+               dp_recursive(options, budget, i - 1, j - options[i - 1].cost,
+                            k - options[i - 1].resources_required,
+                            l - options[i - 1].impact_score)
+                            + options[i - 1].capacity_increase); // update
 }
 
 // todo read from json file
@@ -139,9 +129,11 @@ int main() {
         }
     }
 
-    vector<vector<vector<vector<int>>>> dp_recursive_result = dp_recursive(options, budget);
+vector<vector<vector<vector<int>>>> dp_recursive_result(options.size() + 1, vector<vector<vector<int>>>(budget.financial + 1,
+                                    vector<vector<int>>( budget.resource + 1,
+                                            vector<int>( budget.ecological + 1, 0)))); // fill with 0
 
-    cout << "Maximum flights served (Recursive): " << dp_recursive_result.back().back().back().back() << endl;
+    cout << "Maximum flights served (Recursive): " << dp_recursive(options, budget, options.size(), budget.financial, budget.resource, budget.ecological) << endl;
     cout << "Maximum flights served (Non-Recursive): " << dp.back().back().back().back() << endl;
 
     return 0;
