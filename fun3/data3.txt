@@ -1,0 +1,24 @@
+financial budget 5000
+resource budget 100
+ecological budget 500
+
+Options:
+cost: 120, capacity_increase: 50, resources_required: 1, impact_score: 12
+cost: 200, capacity_increase: 80, resources_required: 3, impact_score: 20
+cost: 300, capacity_increase: 120, resources_required: 5, impact_score: 30
+cost: 150, capacity_increase: 60, resources_required: 2, impact_score: 15
+cost: 220, capacity_increase: 85, resources_required: 4, impact_score: 22
+cost: 270, capacity_increase: 100, resources_required: 5, impact_score: 27
+cost: 190, capacity_increase: 75, resources_required: 3, impact_score: 19
+cost: 340, capacity_increase: 140, resources_required: 8, impact_score: 34
+cost: 230, capacity_increase: 95, resources_required: 4, impact_score: 23
+cost: 260, capacity_increase: 105, resources_required: 6, impact_score: 26
+cost: 310, capacity_increase: 120, resources_required: 7, impact_score: 31
+cost: 370, capacity_increase: 150, resources_required: 9, impact_score: 37
+cost: 200, capacity_increase: 80, resources_required: 4, impact_score: 20
+cost: 330, capacity_increase: 130, resources_required: 8, impact_score: 33
+cost: 240, capacity_increase: 100, resources_required: 5, impact_score: 24
+cost: 290, capacity_increase: 110, resources_required: 6, impact_score: 29
+cost: 360, capacity_increase: 140, resources_required: 9, impact_score: 36
+cost: 250, capacity_increase: 95, resources_required: 5, impact_score: 25
+cost: 300, capacity_increase: 115, resources_required: 7, impact_score: 30

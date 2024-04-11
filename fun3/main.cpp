@@ -3,6 +3,7 @@
 #include <sstream>
 #include <vector>
 #include <algorithm>
+#include <nlohmann/json.hpp>
 
 using namespace std;
 
@@ -20,12 +21,17 @@ struct Option {
 };
 
 // recursive
-int dp_recursive(vector<Option> &options, Budget &budget, int i, int j, int k, int l) { // i - option index, j - financial, k - resource, l - ecological
+// i - option index,
+// j - financial,
+// k - resource,
+// l - ecological
+int dp_recursive(vector<Option> &options, Budget &budget, int i, int j, int k, int l) {
     if (i == 0) {
         return 0;  // base case
     }
 
-    if (options[i - 1].cost > j || options[i - 1].resources_required > k || options[i - 1].impact_score > l) { // check if the option can be selected
+    if (options[i - 1].cost > j || options[i - 1].resources_required > k ||
+        options[i - 1].impact_score > l) { // check if the option can be selected
         return dp_recursive(options, budget, i - 1, j, k, l); // do not update
     }
 
@@ -33,14 +39,15 @@ int dp_recursive(vector<Option> &options, Budget &budget, int i, int j, int k, i
                dp_recursive(options, budget, i - 1, j - options[i - 1].cost,
                             k - options[i - 1].resources_required,
                             l - options[i - 1].impact_score)
-                            + options[i - 1].capacity_increase); // update
+               + options[i - 1].capacity_increase); // update
 }
 
 // todo read from json file
 int main() {
-    vector<string> ddata = {"data1", "data2"}; // data files
+    vector<string> ddata = {"data1", "data2", "data3"}; // data files
     cout << "data1 - 1" << endl;
     cout << "data2 - 2" << endl;
+    cout << "data3 - 3" << endl;
     int data;
     cin >> data;
 
@@ -107,8 +114,12 @@ int main() {
     }
 
     vector<vector<vector<vector<int>>>> dp(options.size() + 1, vector<vector<vector<int>>>(budget.financial + 1,
-                                    vector<vector<int>>( budget.resource + 1,
-                                            vector<int>( budget.ecological + 1, 0)))); // fill with 0
+                                                                                           vector<vector<int>>(
+                                                                                                   budget.resource + 1,
+                                                                                                   vector<int>(
+                                                                                                           budget.ecological +
+                                                                                                           1,
+                                                                                                           0)))); // fill with 0
 
     // Iterative
     for (int i = 1; i <= options.size(); i++) {
@@ -129,11 +140,17 @@ int main() {
         }
     }
 
-vector<vector<vector<vector<int>>>> dp_recursive_result(options.size() + 1, vector<vector<vector<int>>>(budget.financial + 1,
-                                    vector<vector<int>>( budget.resource + 1,
-                                            vector<int>( budget.ecological + 1, 0)))); // fill with 0
+    vector<vector<vector<vector<int>>>> dp_recursive_result(options.size() + 1,
+                                                            vector<vector<vector<int>>>(budget.financial + 1,
+                                                                                        vector<vector<int>>(
+                                                                                                budget.resource + 1,
+                                                                                                vector<int>(
+                                                                                                        budget.ecological +
+                                                                                                        1,
+                                                                                                        0)))); // fill with 0
 
-    cout << "Maximum flights served (Recursive): " << dp_recursive(options, budget, options.size(), budget.financial, budget.resource, budget.ecological) << endl;
+    cout << "Maximum flights served (Recursive): "
+         << dp_recursive(options, budget, options.size(), budget.financial, budget.resource, budget.ecological) << endl;
     cout << "Maximum flights served (Non-Recursive): " << dp.back().back().back().back() << endl;
 
     return 0;

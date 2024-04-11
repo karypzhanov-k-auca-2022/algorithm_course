@@ -1,0 +1,13 @@
+    vector<string> ddata = {"data1", "data2", "data3"}; // data files
+    cout << "data1 - 1" << endl;
+    cout << "data2 - 2" << endl;
+    cout << "data3 - 3" << endl;
+    int data;
+    cin >> data;
+
+    if (data < 1 || data > ddata.size()) {
+        cout << "Invalid data number!" << endl; // check if the input is valid
+        return 1;
+    }
+
+    string file_name_to_read = "../fun3/" + ddata[data - 1] + ".txt"; // file to read
