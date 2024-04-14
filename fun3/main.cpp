@@ -6,6 +6,7 @@
 #include <nlohmann/json.hpp>
 
 using namespace std;
+using json = nlohmann::json;
 
 struct Budget {
     int financial;
@@ -42,6 +43,12 @@ int dp_recursive(vector<Option> &options, Budget &budget, int i, int j, int k, i
                + options[i - 1].capacity_increase); // update
 }
 
+void data_menu() {
+    cout << "data1 - 1" << endl;
+    cout << "data2 - 2" << endl;
+    cout << "data3 - 3" << endl;
+}
+
 // todo read from json file
 int main() {
     vector<string> ddata = {"data1", "data2", "data3"}; // data files
@@ -55,10 +62,11 @@ int main() {
         return 1;
     }
 
+    string file_format = (number == 1) ? "json" : "txt"; // file format
+    Budget budget = {0, 0, 0};
+    vector<Option> options;
 
-    cout << "data1 - 1" << endl;
-    cout << "data2 - 2" << endl;
-    cout << "data3 - 3" << endl;
+    data_menu();
     int data;
     cin >> data;
 
@@ -67,13 +75,9 @@ int main() {
         return 1;
     }
 
-    string file_name_to_read = "../fun3/" + ddata[data - 1] + ".txt"; // file to read
-
-    ifstream file(file_name_to_read);
+    string file_name_to_read = "../fun3/" + ddata[data - 1] + "." + file_format; // file to read
+    ifstream file(file_name_to_read); // open the file
     string line;
-
-    Budget budget = {0, 0, 0};
-    vector<Option> options;
 
     // read 3 lines of the file
     int n = 0;

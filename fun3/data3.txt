@@ -1,6 +1,6 @@
-financial budget 5000
-resource budget 100
-ecological budget 500
+financial budget 1000
+resource budget 50
+ecological budget 200
 
 Options:
 cost: 120, capacity_increase: 50, resources_required: 1, impact_score: 12
