@@ -6,7 +6,7 @@
 #include <nlohmann/json.hpp>
 
 using namespace std;
-using json = nlohmann::json;
+using json = nlohmann::json; // json library
 
 struct Budget {
     int financial;
@@ -86,7 +86,6 @@ bool read_from_txt(string &file_name, Budget &budget, vector<Option> &options) {
     ifstream file(file_name); // open the file
     string line;
 
-    // read 3 lines of the file
     int n = 0;
     while (getline(file, line)) {
         stringstream eachLine(line); // read each line
@@ -105,7 +104,7 @@ bool read_from_txt(string &file_name, Budget &budget, vector<Option> &options) {
 
         n++;
         if (n == 3) {
-            break;
+            break;  // read only 3 lines
         }
     }
 
@@ -180,7 +179,7 @@ int main() {
     if (choice == 1) {
         Budget budget = {0, 0, 0};
         vector<Option> options;
-        cout << "Select data format (1 - JSON, 2 - TXT) or to see all answers (3):" << endl;
+        cout << "Select data format (1 - JSON, 2 - TXT)" << endl;
         int number;
         cin >> number;
 
@@ -192,7 +191,6 @@ int main() {
         }
 
         string file_format = (number == 1) ? "json" : "txt"; // file format
-
 
         data_menu();
         int data;
@@ -231,7 +229,9 @@ int main() {
 
         cout << "Maximum flights served (Recursive): " << recursive_result << endl;
         cout << "Maximum flights served (Non-Recursive): " << iterative_result << endl;
-    } else if (choice == 2) {
+    }
+
+    else if (choice == 2) {
         // JSON output
         for (int i = 0; i < 3; i++) {
             Budget budget = {0, 0, 0};
