@@ -35,6 +35,9 @@ add_executable(bucket stuff/bucket.cpp)
 add_executable(dfs_test stuff/dfs.cpp)
 add_executable(dp_test stuff/test_2d_dp.cpp)
 add_executable(GAME stuff/My_Game/main.cpp stuff/My_Game/Animal.cpp stuff/My_Game/Animal.h)
+add_executable(test_ojjj_11 stuff/test_ojjj_11.cpp)
+add_executable(test_ojjj_12 stuff/test_ojjj_12.cpp)
+add_executable(test_json stuff/My_Game/json_check.cpp)
 
 #funs
 add_executable(plane_routes_creator fun1/main.cpp fun1/City.h fun1/Graph.h fun1/Flight.h)
@@ -44,3 +47,4 @@ include_directories(${CMAKE_SOURCE_DIR}/fun1)
 include_directories(${CMAKE_SOURCE_DIR}/fun3)
 
 target_link_libraries(kamar PRIVATE nlohmann_json::nlohmann_json)
+target_link_libraries(test_json PRIVATE nlohmann_json::nlohmann_json)

@@ -45,6 +45,17 @@ int dp_recursive(vector<Option> &options, Budget &budget, int i, int j, int k, i
 // todo read from json file
 int main() {
     vector<string> ddata = {"data1", "data2", "data3"}; // data files
+
+    cout << "Select data format (1 - JSON, 2 - TXT): ";
+    int number;
+    cin >> number;
+
+    if (number < 1 || number > 2) {
+        cout << "Invalid file type!" << endl;
+        return 1;
+    }
+
+
     cout << "data1 - 1" << endl;
     cout << "data2 - 2" << endl;
     cout << "data3 - 3" << endl;
@@ -86,9 +97,6 @@ int main() {
             break;
         }
     }
-
-    file.clear(); // Clear the end-of-file flag
-    file.seekg(0); // Reset file pointer to beginning
 
     // read the rest of the file
     while (getline(file, line)) {
@@ -139,15 +147,6 @@ int main() {
             }
         }
     }
-
-    vector<vector<vector<vector<int>>>> dp_recursive_result(options.size() + 1,
-                                                            vector<vector<vector<int>>>(budget.financial + 1,
-                                                                                        vector<vector<int>>(
-                                                                                                budget.resource + 1,
-                                                                                                vector<int>(
-                                                                                                        budget.ecological +
-                                                                                                        1,
-                                                                                                        0)))); // fill with 0
 
     cout << "Maximum flights served (Recursive): "
          << dp_recursive(options, budget, options.size(), budget.financial, budget.resource, budget.ecological) << endl;

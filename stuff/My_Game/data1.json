@@ -1,0 +1,31 @@
+{
+  "financial": 500,
+  "resource": 10,
+  "ecological": 50,
+  "options": [
+    {
+      "cost": 120,
+      "capacity_increase": 50,
+      "resources_required": 1,
+      "impact_score": 12
+    },
+    {
+      "cost": 200,
+      "capacity_increase": 80,
+      "resources_required": 3,
+      "impact_score": 20
+    },
+    {
+      "cost": 300,
+      "capacity_increase": 120,
+      "resources_required": 5,
+      "impact_score": 30
+    },
+    {
+      "cost": 150,
+      "capacity_increase": 60,
+      "resources_required": 2,
+      "impact_score": 15
+    }
+  ]
+}
