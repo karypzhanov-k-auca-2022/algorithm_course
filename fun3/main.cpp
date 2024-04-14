@@ -134,11 +134,6 @@ int main() {
     int number;
     cin >> number;
 
-    if (number < 1 || number > 2) {
-        cout << "Invalid file type!" << endl;
-        return 1;
-    }
-
     string file_format = (number == 1) ? "json" : "txt"; // file format
     Budget budget = {0, 0, 0};
     vector<Option> options;
@@ -146,11 +141,6 @@ int main() {
     data_menu();
     int data;
     cin >> data;
-
-    if (data < 1 || data > ddata.size()) {
-        cout << "Invalid data number!" << endl; // check if the input is valid
-        return 1;
-    }
 
     string file_name_to_read = "../fun3/" + ddata[data - 1] + "." + file_format; // file to read
 
