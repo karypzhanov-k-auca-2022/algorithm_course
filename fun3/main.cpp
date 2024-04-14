@@ -44,39 +44,15 @@ int dp_recursive(vector<Option> &options, Budget &budget, int i, int j, int k, i
 }
 
 void data_menu() {
+    cout << "Select data (1 - 3):" << endl;
     cout << "data1 - 1" << endl;
     cout << "data2 - 2" << endl;
     cout << "data3 - 3" << endl;
 }
 
-// todo read from json file
-int main() {
-    vector<string> ddata = {"data1", "data2", "data3"}; // data files
-
-    cout << "Select data format (1 - JSON, 2 - TXT): ";
-    int number;
-    cin >> number;
-
-    if (number < 1 || number > 2) {
-        cout << "Invalid file type!" << endl;
-        return 1;
-    }
-
-    string file_format = (number == 1) ? "json" : "txt"; // file format
-    Budget budget = {0, 0, 0};
-    vector<Option> options;
-
-    data_menu();
-    int data;
-    cin >> data;
-
-    if (data < 1 || data > ddata.size()) {
-        cout << "Invalid data number!" << endl; // check if the input is valid
-        return 1;
-    }
-
-    string file_name_to_read = "../fun3/" + ddata[data - 1] + "." + file_format; // file to read
-    ifstream file(file_name_to_read); // open the file
+// function to read data from txt file
+bool read_from_txt(string &file_name, Budget &budget, vector<Option> &options) {
+    ifstream file(file_name); // open the file
     string line;
 
     // read 3 lines of the file
@@ -123,6 +99,67 @@ int main() {
             option.impact_score = stoi(word);
             options.push_back(option);
         }
+    }
+
+    return true;
+}
+
+// function to read data from json file
+bool read_from_json(string &file_name, Budget &budget, vector<Option> &options) {
+    ifstream file(file_name); // open the file
+
+    json data;
+    file >> data;
+
+    budget.financial = data["financial"];
+    budget.resource = data["resource"];
+    budget.ecological = data["ecological"];
+
+    for (const auto &option: data["options"]) {
+        options.push_back({
+                                  option["cost"],
+                                  option["capacity_increase"],
+                                  option["resources_required"],
+                                  option["impact_score"]
+                          });
+    }
+
+    return true;
+}
+
+int main() {
+    vector<string> ddata = {"data1", "data2", "data3"}; // data files
+
+    cout << "Select data format (1 - JSON, 2 - TXT): ";
+    int number;
+    cin >> number;
+
+    if (number < 1 || number > 2) {
+        cout << "Invalid file type!" << endl;
+        return 1;
+    }
+
+    string file_format = (number == 1) ? "json" : "txt"; // file format
+    Budget budget = {0, 0, 0};
+    vector<Option> options;
+
+    data_menu();
+    int data;
+    cin >> data;
+
+    if (data < 1 || data > ddata.size()) {
+        cout << "Invalid data number!" << endl; // check if the input is valid
+        return 1;
+    }
+
+    string file_name_to_read = "../fun3/" + ddata[data - 1] + "." + file_format; // file to read
+
+    if (file_format == "json") {
+        read_from_json(file_name_to_read, budget, options);
+    }
+
+    if (file_format == "txt") {
+        read_from_txt(file_name_to_read, budget, options);
     }
 
     vector<vector<vector<vector<int>>>> dp(options.size() + 1, vector<vector<vector<int>>>(budget.financial + 1,

@@ -1,11 +1,7 @@
 {
-  "budget": [
-    {
-      "financial": 500,
-      "resources": 10,
-      "ecological": 50
-    }
-  ],
+  "financial": 500,
+  "resource": 10,
+  "ecological": 50,
   "options": [
     {
       "cost": 120,

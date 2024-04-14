@@ -1,9 +1,7 @@
 {
-  "budget": {
-    "financial": 2,
-    "resource": 2,
-    "ecological": 2
-  },
+  "financial": 2,
+  "resource": 2,
+  "ecological": 2,
   "options": [
     {
       "cost": 2,
