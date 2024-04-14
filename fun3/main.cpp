@@ -134,6 +134,13 @@ int main() {
     int number;
     cin >> number;
 
+    // error handling
+    if (number < 1 || number > 2){
+        cerr << "Invalid data format selected" << endl;
+        cerr << "Please select data format from 1 or 2" << endl;
+        return 1;
+    }
+
     string file_format = (number == 1) ? "json" : "txt"; // file format
     Budget budget = {0, 0, 0};
     vector<Option> options;
@@ -141,6 +148,13 @@ int main() {
     data_menu();
     int data;
     cin >> data;
+
+    // error handling
+    if (data < 1 || data > 3){
+        cerr << "Invalid data selected" << endl;
+        cerr << "Please select data from 1 to 3" << endl;
+        return 1;
+    }
 
     string file_name_to_read = "../fun3/" + ddata[data - 1] + "." + file_format; // file to read
 
