@@ -1,0 +1,108 @@
+   09.04.2024
+                                            Reward Function
+
+set of Action
+set of States/set of observations
+Action πolicy (Observation) -> Action
+
+double Reward (Action action, State state, State nextState) {
+    double reward = 0;
+    if (nextState.isTerminal) {
+        reward = 100;
+    } else {
+        reward = -1;
+    }
+    return reward;
+}
+
+Probability Distribution
+
+double Probability (State s, Action a) {
+    double probability = 0;
+    if (state.isTerminal) {
+        probability = 0;
+    } else {
+        probability = 1;
+    }
+    return probability;
+}
+
+Rewardsment learning
+
+Markov Decision Processes
+
+Markov Decision Processes (MDPs) are a mathematical framework for modeling
+decision-making in situations where outcomes are partly random and partly under the control of a decision maker.
+MDPs are useful for studying a wide range of optimization problems solved via dynamic programming and reinforcement learning.
+
+Reversing the MDP
+1) Reward Function
+2) Set of Action
+3) Set of States/set of observations
+4) Probability Distribution
+5) Discount Factor (γ)
+
+Action πolicy (Observation) -> Action
+
+1) Insertion sort
+2) Selection sort
+3) Bubble sort
+4) Merge sort
+5) Quick sort
+
+
+
+
+                                    16.04.2024
+Distribution of rewards
+
+1) Normal Distribution
+2) Binomial Distribution
+3) Poisson Distribution
+4) Hypergeometric Distribution
+5) Uniform Distribution
+
+One arm bandit
+1) greedy algorithm
+2) epsilon greedy algorithm - 90% of the time, it will choose the best option and 10% of the time, it will choose the random option
+3) Upper Confidence Bound (UCB) algorithm - it will choose the option which has the highest upper confidence bound
+4) Thompson Sampling algorithm - it will choose the option which has the highest probability of success
+
+1) Дергаем каждую руку по одному разу
+2) Выбираем руку с наибольшим средним выигрышем
+3) Дергаем уже
+
+Sample - сколько дней прошло
+Population - сколько всего дней
+t -
+r = √2log(t) / n
+avarage reward = sum of rewards / number of times the arm was pulled
+
+lower confidence bound = average reward - r
+upper confidence bound = average reward + r
+
+upper confidence bound - что будет в лучшем случае
+lower confidence bound - что будет в худшем случае
+
+UCB - алгоритм который выбирает руку с наибольшим upper confidence bound
+вариант 1: average reward is big
+вариант 2: √2log(t) / n is big, if n is small, we pull the arm not enough times
+
+Elimination Rule
+Если наш лучший случай худше чем худший случай другого варианта,
+то мы выбираем другой вариант и забываем про нынешний вариант
+
+
+Every client is bandit in the casino
+1) Netflix uses bandit algorithm to recommend movies
+2) Google uses bandit algorithm to recommend ads
+3) Amazon uses bandit algorithm to recommend products
+4) Facebook uses bandit algorithm to recommend friends
+
+√2log(t) / n:
+t - сколько всего дней    365
+n - сколько раз дернули руку до сегодняшнего дня
+
+Смертельные многорукие бандиты
+
+Сонные многорукие бандиты

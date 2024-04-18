@@ -42,6 +42,7 @@ add_executable(test_json stuff/My_Game/json_check.cpp)
 #funs
 add_executable(plane_routes_creator fun1/main.cpp fun1/City.h fun1/Graph.h fun1/Flight.h)
 add_executable(kamar fun3/main.cpp)
+add_executable(leader fun4/supreme_leader_simulator.cpp)
 
 include_directories(${CMAKE_SOURCE_DIR}/fun1)
 include_directories(${CMAKE_SOURCE_DIR}/fun3)
