@@ -135,7 +135,11 @@ public:
     }
 
     void exploitMines(int day) {
-        selectMine(day);
+        auto selectedMine = selectMine(day); // select the mine to exploit
+        if (selectedMine && !selectedMine->isUnderThreat()) {
+            double extractedGold = selectedMine->extractGold(); // extract gold from the mine
+            totalEarned += extractedGold; // update total earnings
+        }
     }
 
     void printStatistics() const {
