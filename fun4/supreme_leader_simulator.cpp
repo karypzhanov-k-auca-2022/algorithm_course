@@ -6,7 +6,6 @@
 #include <map>
 
 
-
 std::random_device rd; // Obtain a random number from hardware
 std::mt19937 engine(rd()); // Seed the generator
 
@@ -110,19 +109,39 @@ public:
         }
     }
 
+    // select the mine with the highest UCB value
     std::shared_ptr<Mine> selectMine(int day) {
-        //TODO: implement UCB algorithm
+        std::shared_ptr<Mine> selectedMine = nullptr;
+        double maxUCB = -1.0;
+
+        for (const auto &mine: mines) {
+            if (mine->isUnderThreat()) { // if the mine is under threat, skip it
+                continue;
+            }
+
+            if (mine->getDaysWorked() == 0) { // if the mine has not been exploited yet
+                return mine;
+            }
+
+            double ucb = mine->getTotalExtractedGold() / mine->getDaysWorked() +
+                         std::sqrt(2 * std::log(day) / mine->getDaysWorked()); // UCB formula
+
+            if (ucb > maxUCB) { // select the mine with the highest UCB value
+                maxUCB = ucb;
+                selectedMine = mine;
+            }
+        }
+        return selectedMine;
     }
 
     void exploitMines(int day) {
-        //TODO: implement mine exploitation
         selectMine(day);
     }
 
     void printStatistics() const {
         std::cout << std::fixed << "Total earnings: $" << std::setprecision(0) << totalEarned << std::endl;
         std::cout << "Mine contributions:" << std::endl;
-        for (const auto& mine: mines) {
+        for (const auto &mine: mines) {
             std::cout << "Mine " << mine->getOrdinalNumber() + 1 << " earned $" << std::setprecision(0)
                       << mine->getTotalExtractedGold() << " and worked for " << mine->getDaysWorked() << " days";
             if (mine->isUnderThreat()) {
