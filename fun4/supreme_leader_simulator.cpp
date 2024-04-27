@@ -178,9 +178,19 @@ public:
 int main() {
     int numMines = 10;
     double targetEarnings = 1000000;
+    int games = 1000;
+    int wins = 0;
 
-    SupremeLeader leader(numMines, targetEarnings);
-    leader.playGame();
+    for (int i = 0; i < games; i++) {
+        SupremeLeader leader(numMines, targetEarnings);
+        leader.playGame();
+        if (leader.totalEarned > targetEarnings) {
+            wins++;
+        }
+    }
+
+    std::cout << "----------------\n";
+    std::cout << "Win rate: " << wins << "/" << games << std::endl;
 
     return 0;
 }
