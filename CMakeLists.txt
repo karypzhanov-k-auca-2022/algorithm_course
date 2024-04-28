@@ -29,6 +29,7 @@ add_executable(ojjj1 oj/ojjj1.cpp)
 add_executable(ojjj2 oj/ojjj2.cpp)
 add_executable(ojjj3 oj/ojjj3.cpp)
 add_executable(ojjj4 oj/ojjj4.cpp)
+add_executable(ojjj8 oj/ojjj8.cpp)
 
 #stuff
 add_executable(bucket stuff/bucket.cpp)
@@ -39,13 +40,11 @@ add_executable(test_ojjj_11 stuff/test_ojjj_11.cpp)
 add_executable(test_ojjj_12 stuff/test_ojjj_12.cpp)
 add_executable(test_ojjj_13 stuff/test_ojjj_13.cpp)
 add_executable(test_ojjj_8 stuff/test_ojjj_8.cpp)
-add_executable(test_ojjj_9 stuff/test_ojjj_9.cpp)
 add_executable(test_ojjj_15 stuff/test_ojjj_15.cpp)
 add_executable(test_ojjj_18 stuff/test_ojjj_18.cpp)
 add_executable(test_ojjj_20 stuff/test_ojjj_20.cpp)
 add_executable(test_json stuff/My_Game/json_check.cpp)
 add_executable(fun4_train stuff/fun4_train.cpp)
-add_executable(fun4_train_2 stuff/fun4_train_2.cpp)
 
 #funs
 add_executable(plane_routes_creator fun1/main.cpp fun1/City.h fun1/Graph.h fun1/Flight.h)
