@@ -30,6 +30,7 @@ add_executable(ojjj2 oj/ojjj2.cpp)
 add_executable(ojjj3 oj/ojjj3.cpp)
 add_executable(ojjj4 oj/ojjj4.cpp)
 add_executable(ojjj8 oj/ojjj8.cpp)
+add_executable(ojjj11 oj/ojjj11.cpp)
 
 #stuff
 add_executable(bucket stuff/bucket.cpp)
