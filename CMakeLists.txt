@@ -9,6 +9,7 @@ FetchContent_Declare(json URL https://github.com/nlohmann/json/releases/download
 FetchContent_MakeAvailable(json)
 
 #oj
+add_executable(oj1 oj/oj1.cpp)
 add_executable(oj2 oj/oj2.cpp)
 add_executable(oj3 oj/oj3.cpp)
 add_executable(oj4 oj/oj4.cpp)
@@ -31,6 +32,7 @@ add_executable(ojjj3 oj/ojjj3.cpp)
 add_executable(ojjj4 oj/ojjj4.cpp)
 add_executable(ojjj8 oj/ojjj8.cpp)
 add_executable(ojjj11 oj/ojjj11.cpp)
+add_executable(ojjj12 oj/ojjj12.cpp)
 
 #stuff
 add_executable(bucket stuff/bucket.cpp)
@@ -46,6 +48,7 @@ add_executable(test_ojjj_18 stuff/test_ojjj_18.cpp)
 add_executable(test_ojjj_20 stuff/test_ojjj_20.cpp)
 add_executable(test_json stuff/My_Game/json_check.cpp)
 add_executable(fun4_train stuff/fun4_train.cpp)
+add_executable(exam_prepare stuff/exam_prepare.cpp)
 
 #funs
 add_executable(plane_routes_creator fun1/main.cpp fun1/City.h fun1/Graph.h fun1/Flight.h)
