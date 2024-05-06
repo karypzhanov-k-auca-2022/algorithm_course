@@ -1,88 +1,37 @@
-#include <iostream>
-#include <vector>
-#include <string>
+#include "iostream"
+#include "string"
 
 using namespace std;
 
-bool hasQueenInRow(const vector<string> &board, int row, int col);
-bool hasQueenInColumn(const vector<string> &board, int row, int col);
-bool hasQueenInDiagonal(const vector<string> &board, int row, int col);
-bool isValidPosition(const vector<string> &board, int row, int col);
+class Solution {
+public:
+    string largestOddNumber(string num) {
+        int n = num.size()-1; // Получаем размер строки num
+        string s=""; // Создаем пустую строку s
+        int index; // Объявляем переменную index
 
-char queen = '*';
-
-bool isValid(const vector<string> &board) {
-    int queens = 0;
-
-    for (int i = 0; i < 8; i++) {
-        for (int j = 0; j < 8; j++) {
-            if (board[i][j] == queen) { // find
-                queens++;
-                if (!isValidPosition(board, i, j)) {
-                    return false; // immediately false
-                }
+        // Начинаем перебор символов справа налево
+        for(int i=n;i>=0;i--){
+            if(num[i]%2 != 0){ // Если текущий символ нечетный
+                index = i; // Запоминаем его индекс
+                break; // Прерываем цикл
             }
         }
-    }
 
-    if (queens == 8) return true;
-    else return false;
-}
-
-bool isValidPosition(const vector<string> &board, int row, int col) {
-    // if queen pass all cases then true
-    return !(hasQueenInRow(board, row, col) || hasQueenInColumn(board, row, col) || hasQueenInDiagonal(board, row, col));
-}
-
-// check same row
-bool hasQueenInRow(const vector<string> &board, int row, int col) {
-    for (int i = 0; i < 8; i++) {
-        if (i != row && board[i][col] == queen) {
-            // check other queen from column
-            return true;
+        // Формируем подстроку с первого символа до index включительно
+        for(int i=0;i<=index;i++){
+            s+=num[i];
         }
-    }
-    return false;
-}
 
-// check same column
-bool hasQueenInColumn(const vector<string> &board, int row, int col) {
-    for (int i = 0; i < 8; i++) {
-        if (i != col && board[row][i] == queen) {
-            // check other queen from row
-            return true;
-        }
+        return s; // Возвращаем подстроку
     }
-    return false;
-}
-
-// check same diagonal
-bool hasQueenInDiagonal(const vector<string> &board, int row, int col) {
-    for (int i = 0; i < 8; i++) {
-        for (int j = 0; j < 8; j++) {
-            if (i != row && j != col && abs(row - i) == abs(col - j) && board[i][j] == queen) {
-
-                return true;
-            }
-        }
-    }
-    return false;
-}
+};
 
 int main() {
-    vector<string> board;
+    Solution s;
+    string w = "35427";
 
-    for (int i = 0; i < 8; i++) {
-        string row;
-        cin >> row;
-        board.push_back(row); // each line
-    }
-
-    if (isValid(board)) {
-        cout << "valid" << endl;
-    } else {
-        cout << "invalid" << endl;
-    }
+    cout << s.largestOddNumber(w) << "\n";
 
     return 0;
 }

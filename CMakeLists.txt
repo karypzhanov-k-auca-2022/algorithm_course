@@ -8,6 +8,9 @@ Include(FetchContent)
 FetchContent_Declare(json URL https://github.com/nlohmann/json/releases/download/v3.11.3/json.tar.xz)
 FetchContent_MakeAvailable(json)
 
+FetchContent_Declare(json URL https://github.com/nlohmann/json/releases/download/v3.11.3/json.tar.xz)
+FetchContent_MakeAvailable(json)
+
 #oj
 add_executable(oj1 oj/oj1.cpp)
 add_executable(oj2 oj/oj2.cpp)
@@ -33,6 +36,7 @@ add_executable(ojjj4 oj/ojjj4.cpp)
 add_executable(ojjj8 oj/ojjj8.cpp)
 add_executable(ojjj11 oj/ojjj11.cpp)
 add_executable(ojjj12 oj/ojjj12.cpp)
+add_executable(ojjj15 oj/ojjj15.cpp)
 
 #stuff
 add_executable(bucket stuff/bucket.cpp)
