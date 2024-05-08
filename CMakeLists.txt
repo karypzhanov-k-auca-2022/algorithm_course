@@ -31,6 +31,7 @@ add_executable(oj16 oj/oj16.cpp)
 add_executable(oj17 oj/oj17.cpp)
 add_executable(oj18 oj/oj18.cpp)
 add_executable(oj19 oj/oj19.cpp)
+add_executable(oj20 oj/oj20.cpp)
 
 #ojjj
 add_executable(ojjj1 oj/ojjj1.cpp)
