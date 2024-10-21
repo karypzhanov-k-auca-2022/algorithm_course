@@ -216,6 +216,8 @@ int main() {
     } else if (choice1 == 6) {
         std::cout << "bye bye!" << std::endl; // exit
         exit(0);
+    } else if (choice1 == 7) {
+        std::cout << "You chose 7" << std::endl;
     } else {
         std::cout << "Invalid input. Please enter a number between 1 and 6: ";
     }
